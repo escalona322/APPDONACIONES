@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</AnchorPane>
 
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <AnchorPane layoutX="-36.0" layoutY="-8.0" prefHeight="384.0" prefWidth="347.0">
+         <children>
+            <Label layoutX="95.0" layoutY="24.0" prefHeight="64.0" prefWidth="202.0" text="Aplicacion Gestora de Donaciones" />
+            <Button layoutX="149.0" layoutY="249.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="83.0" text="Informes" />
+            <Button layoutX="149.0" layoutY="110.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="83.0" text="Donantes" />
+            <Button layoutX="149.0" layoutY="179.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="83.0" text="Donaciones" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
