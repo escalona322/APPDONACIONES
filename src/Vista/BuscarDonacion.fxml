@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.ControladoraBuscarDonacion">
    <children>
       <AnchorPane layoutX="-80.0" layoutY="-55.0" prefHeight="434.0" prefWidth="584.0">
          <children>
             <Line endX="482.0" layoutX="174.0" layoutY="105.0" startX="-100.0" />
             <Label layoutX="314.0" layoutY="70.0" prefHeight="24.0" prefWidth="102.0" text="Buscar Donaciones" />
-            <TableView layoutX="74.0" layoutY="258.0" prefHeight="178.0" prefWidth="583.0">
+            <TableView fx:id="TablaDonacion" layoutX="74.0" layoutY="258.0" prefHeight="178.0" prefWidth="583.0">
               <columns>
-                <TableColumn prefWidth="140.0" text="Num Donacion" />
-                <TableColumn prefWidth="152.0" text="Nombre" />
-                  <TableColumn prefWidth="143.0" text="Grupo Sanguineo" />
-                  <TableColumn prefWidth="147.0" text="Fecha" />
+                <TableColumn fx:id="NumDonacionT" prefWidth="140.0" text="Num Donacion" />
+                <TableColumn fx:id="NombreT" prefWidth="152.0" text="Nombre" />
+                  <TableColumn fx:id="GrupoSangT" prefWidth="143.0" text="Grupo Sanguineo" />
+                  <TableColumn fx:id="FechaDonacionT" prefWidth="147.0" text="Fecha" />
               </columns>
             </TableView>
             <Line endX="39.0" endY="107.0" layoutX="326.0" layoutY="150.0" startX="39.0" startY="-43.5" />
@@ -31,11 +32,18 @@
             <Label layoutX="240.0" layoutY="115.0" text="Por Nombre Donante" />
             <Label layoutX="380.0" layoutY="115.0" text="Por Grupo Sanguineo" />
             <Label layoutX="544.0" layoutY="115.0" text="Por tipo" />
-            <DatePicker layoutX="97.0" layoutY="169.0" prefHeight="24.0" prefWidth="102.0" />
-            <TextField layoutX="235.0" layoutY="170.0" prefHeight="24.0" prefWidth="114.0" />
-            <TextField layoutX="380.0" layoutY="170.0" prefHeight="24.0" prefWidth="114.0" />
-            <RadioButton layoutX="521.0" layoutY="162.0" mnemonicParsing="false" text="Aféresis" />
-            <RadioButton layoutX="522.0" layoutY="201.0" mnemonicParsing="false" text="Normal" />
+            <DatePicker fx:id="Fecha" layoutX="97.0" layoutY="169.0" prefHeight="24.0" prefWidth="102.0" />
+            <TextField fx:id="Nombre" layoutX="235.0" layoutY="170.0" prefHeight="24.0" prefWidth="114.0" />
+            <TextField fx:id="GSang" layoutX="380.0" layoutY="170.0" prefHeight="24.0" prefWidth="114.0" />
+            <RadioButton fx:id="Aferesis" layoutX="534.0" layoutY="152.0" mnemonicParsing="false" text="Aféresis">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Tipo" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="Normal" layoutX="535.0" layoutY="174.0" mnemonicParsing="false" text="Normal" toggleGroup="$Tipo" />
+            <Button fx:id="BuscarFecha" layoutX="122.0" layoutY="206.0" mnemonicParsing="false" onAction="#BuscarPorFecha" text="Buscar" />
+            <Button fx:id="BuscarNombre" layoutX="266.0" layoutY="206.0" mnemonicParsing="false" onAction="#BuscarPorNombre" text="Buscar" />
+            <Button fx:id="BuscarGSang" layoutX="411.0" layoutY="206.0" mnemonicParsing="false" onAction="#BuscarPorGSang" text="Buscar" />
+            <Button fx:id="BuscarTipo" layoutX="540.0" layoutY="206.0" mnemonicParsing="false" onAction="#BuscarPorTipo" text="Buscar" />
          </children>
       </AnchorPane>
    </children>

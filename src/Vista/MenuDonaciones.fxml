@@ -5,13 +5,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-
-<AnchorPane prefHeight="306.0" prefWidth="302.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane prefHeight="306.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.ControladoraMenuDonaciones">
    <children>
       <AnchorPane layoutX="-6.0" layoutY="94.0" prefHeight="384.0" prefWidth="308.0">
          <children>
-            <Button layoutX="97.0" layoutY="217.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="135.0" text="Buscar Donaciones" />
-            <Button layoutX="97.0" layoutY="76.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="135.0" text="Nueva Donacion" />
+            <Button fx:id="BuscarDonaciones" layoutX="97.0" layoutY="217.0" mnemonicParsing="false" onAction="#AbrirBuscarDonaciones" prefHeight="59.0" prefWidth="135.0" text="Buscar Donaciones" />
+            <Button fx:id="NuevaDonacion" layoutX="97.0" layoutY="76.0" mnemonicParsing="false" onAction="#AbrirNuevaDonacion" prefHeight="59.0" prefWidth="135.0" text="Nueva Donacion" />
          </children>
       </AnchorPane>
       <Line endX="255.0" layoutX="47.0" layoutY="94.0" startX="-100.0" />

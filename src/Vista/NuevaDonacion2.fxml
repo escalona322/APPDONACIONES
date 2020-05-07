@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-
-<AnchorPane prefHeight="430.0" prefWidth="554.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane prefHeight="430.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.ControladoraNuevaDonacion2">
    <children>
       <AnchorPane layoutX="-20.0" layoutY="-24.0" prefHeight="496.0" prefWidth="628.0">
          <children>
-            <TextField layoutX="73.0" layoutY="132.0" text="Tension diástolica" />
+            <TextField fx:id="TensionD" layoutX="73.0" layoutY="132.0" text="Tension diástolica" />
             <Line endX="507.0" layoutX="121.0" layoutY="93.0" startX="-100.0" />
             <Label layoutX="269.0" layoutY="42.0" prefHeight="34.0" prefWidth="92.0" text="Nueva Donacion" />
-            <TextField layoutX="73.0" layoutY="183.0" text="Tensión sistolica" />
-            <TextField layoutX="73.0" layoutY="236.0" text="Pulso" />
-            <TextField layoutX="269.0" layoutY="132.0" text="HB Venosa" />
-            <TextField layoutX="269.0" layoutY="183.0" text="HB Capilar" />
-            <DatePicker layoutX="263.0" layoutY="236.0" prefHeight="25.0" prefWidth="149.0" />
-            <RadioButton layoutX="463.0" layoutY="149.0" mnemonicParsing="false" text="Aféresis" />
-            <RadioButton layoutX="464.0" layoutY="187.0" mnemonicParsing="false" text="Normal" />
-            <TableView layoutX="21.0" layoutY="282.0" prefHeight="216.0" prefWidth="619.0">
+            <TextField fx:id="TensionS" layoutX="73.0" layoutY="183.0" text="Tensión sistolica" />
+            <TextField fx:id="Pulso" layoutX="73.0" layoutY="236.0" text="Pulso" />
+            <TextField fx:id="HBVen" layoutX="269.0" layoutY="132.0" text="HB Venosa" />
+            <TextField fx:id="HBCap" layoutX="269.0" layoutY="183.0" text="HB Capilar" />
+            <DatePicker fx:id="FechaDonacion" layoutX="263.0" layoutY="236.0" prefHeight="25.0" prefWidth="149.0" />
+            <RadioButton fx:id="Aferesis" layoutX="463.0" layoutY="149.0" mnemonicParsing="false" text="Aféresis">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Tipo" />
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="Normal" layoutX="464.0" layoutY="187.0" mnemonicParsing="false" text="Normal" toggleGroup="$Tipo" />
+            <TableView fx:id="TablaDonacion" layoutX="21.0" layoutY="282.0" prefHeight="216.0" prefWidth="619.0">
               <columns>
-                <TableColumn prefWidth="166.0" text="N.Donacion" />
-                  <TableColumn prefWidth="147.0" text="Tipo Donacion" />
-                  <TableColumn prefWidth="150.0" text="Fecha Donacion" />
-                  <TableColumn prefWidth="155.0" text="Pulso" />
+                <TableColumn fx:id="NumDonacionT" prefWidth="166.0" text="N.Donacion" />
+                  <TableColumn fx:id="TipoT" prefWidth="147.0" text="Tipo Donacion" />
+                  <TableColumn fx:id="FechaDonacionT" prefWidth="150.0" text="Fecha Donacion" />
+                  <TableColumn fx:id="PulsoT" prefWidth="155.0" text="Pulso" />
               </columns>
             </TableView>
+            <Button layoutX="545.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Añadir" />
+            <Button layoutX="545.0" layoutY="179.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Borrar" />
+            <Button layoutX="545.0" layoutY="232.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Eliminar" />
          </children>
       </AnchorPane>
    </children>

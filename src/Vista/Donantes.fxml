@@ -11,48 +11,48 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-<SplitPane dividerPositions="0.6105675146771037" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="513.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.6105675146771037" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="513.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.ControladoraDonantes">
    <items>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="598.0">
          <children>
             <Label layoutX="240.0" layoutY="14.0" text="Administrar Donantes." />
-            <TextField layoutX="125.0" layoutY="62.0" prefHeight="26.0" prefWidth="100.0" text="Nombre" />
-            <TextField layoutX="125.0" layoutY="149.0" prefHeight="26.0" prefWidth="100.0" text="2º Apellido" />
-            <TextField layoutX="125.0" layoutY="109.0" prefHeight="26.0" prefWidth="100.0" text="1er Apellido" />
-            <TextField layoutX="125.0" layoutY="192.0" prefHeight="26.0" prefWidth="100.0" text="Identificacion" />
-            <TextField layoutX="125.0" layoutY="234.0" prefHeight="26.0" prefWidth="100.0" text="Teléfono" />
-            <TextField layoutX="249.0" layoutY="62.0" prefHeight="26.0" prefWidth="100.0" text="Ciclo" />
-            <TextField layoutX="249.0" layoutY="109.0" prefHeight="26.0" prefWidth="100.0" text="email" />
-            <TextField layoutX="249.0" layoutY="149.0" prefHeight="26.0" prefWidth="100.0" text="Código Postal" />
-            <TextField layoutX="249.0" layoutY="192.0" prefHeight="26.0" prefWidth="100.0" text="G. Sanguineo" />
-            <DatePicker layoutX="249.0" layoutY="234.0" prefHeight="26.0" prefWidth="100.0" />
-            <Button layoutX="379.0" layoutY="56.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" text="Añadir" />
-            <Button layoutX="379.0" layoutY="101.0" mnemonicParsing="false" text="Modificar" />
-            <Button layoutX="379.0" layoutY="159.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" text="Eliminar" />
-            <Button layoutX="379.0" layoutY="202.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" text="Imprimir" />
+            <TextField fx:id="Nombre" layoutX="125.0" layoutY="62.0" prefHeight="26.0" prefWidth="100.0" text="Nombre" />
+            <TextField fx:id="Apellido2" layoutX="125.0" layoutY="149.0" prefHeight="26.0" prefWidth="100.0" text="2º Apellido" />
+            <TextField fx:id="Apellido1" layoutX="125.0" layoutY="109.0" prefHeight="26.0" prefWidth="100.0" text="1er Apellido" />
+            <TextField fx:id="Identificacion" layoutX="125.0" layoutY="192.0" prefHeight="26.0" prefWidth="100.0" text="Identificacion" />
+            <TextField fx:id="Telefono" layoutX="125.0" layoutY="234.0" prefHeight="26.0" prefWidth="100.0" text="Teléfono" />
+            <TextField fx:id="Ciclo" layoutX="249.0" layoutY="62.0" prefHeight="26.0" prefWidth="100.0" text="Ciclo" />
+            <TextField fx:id="email" layoutX="249.0" layoutY="109.0" prefHeight="26.0" prefWidth="100.0" text="email" />
+            <TextField fx:id="CodigoPostal" layoutX="249.0" layoutY="149.0" prefHeight="26.0" prefWidth="100.0" text="Código Postal" />
+            <TextField fx:id="GrupoSanguineo" layoutX="249.0" layoutY="192.0" prefHeight="26.0" prefWidth="100.0" text="G. Sanguineo" />
+            <DatePicker fx:id="FechaNacimiento" layoutX="249.0" layoutY="234.0" prefHeight="26.0" prefWidth="100.0" />
+            <Button fx:id="Insertar" layoutX="379.0" layoutY="46.0" mnemonicParsing="false" onAction="#InsertarDonante" prefHeight="32.0" prefWidth="73.0" text="Añadir" />
+            <Button fx:id="Modificar" layoutX="379.0" layoutY="93.0" mnemonicParsing="false" onAction="#ModificarDonante" text="Modificar" />
+            <Button fx:id="Eliminar" layoutX="379.0" layoutY="176.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" text="Eliminar" />
+            <Button fx:id="Imprimir" layoutX="379.0" layoutY="221.0" mnemonicParsing="false" onAction="#GenerarCarnet" prefHeight="32.0" prefWidth="73.0" text="Imprimir" />
             <Line endX="-35.0" endY="-192.0" layoutX="519.0" layoutY="192.0" startX="-35.0" startY="116.0" />
             <Line endX="524.0" endY="-139.0" layoutX="74.0" layoutY="179.0" startX="410.5" startY="-139.0" />
             <Label layoutX="498.0" layoutY="6.0" prefHeight="26.0" prefWidth="100.0" text="Búsqueda" />
-            <TextField layoutX="498.0" layoutY="62.0" prefHeight="26.0" prefWidth="86.0" text="Nombre" />
-            <TextField layoutX="498.0" layoutY="149.0" prefHeight="26.0" prefWidth="86.0" text="Email" />
-            <TextField layoutX="498.0" layoutY="120.0" prefHeight="26.0" prefWidth="86.0" text="Teléfono" />
-            <TextField layoutX="498.0" layoutY="91.0" prefHeight="26.0" prefWidth="86.0" text="Apellido" />
-            <TextField layoutX="498.0" layoutY="179.0" prefHeight="26.0" prefWidth="92.0" text="Identificacion" />
-            <TextField layoutX="498.0" layoutY="208.0" prefHeight="26.0" prefWidth="86.0" text="Ciclo" />
-            <Button layoutX="511.0" layoutY="237.0" mnemonicParsing="false" text="Buscar!" />
-            <ImageView fitHeight="148.0" fitWidth="92.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="BuscarNombre" layoutX="498.0" layoutY="62.0" prefHeight="26.0" prefWidth="86.0" text="Nombre" />
+            <TextField fx:id="BuscarEmail" layoutX="498.0" layoutY="149.0" prefHeight="26.0" prefWidth="86.0" text="Email" />
+            <TextField fx:id="BuscarTelefono" layoutX="498.0" layoutY="120.0" prefHeight="26.0" prefWidth="86.0" text="Teléfono" />
+            <TextField fx:id="BuscarApellido" layoutX="498.0" layoutY="91.0" prefHeight="26.0" prefWidth="86.0" text="Apellido" />
+            <TextField fx:id="BuscarID" layoutX="498.0" layoutY="179.0" prefHeight="26.0" prefWidth="92.0" text="Identificacion" />
+            <TextField fx:id="BuscarCiclo" layoutX="498.0" layoutY="208.0" prefHeight="26.0" prefWidth="86.0" text="Ciclo" />
+            <Button fx:id="Buscar" layoutX="511.0" layoutY="237.0" mnemonicParsing="false" onAction="#Buscar" text="Buscar!" />
+            <ImageView fx:id="Foto" fitHeight="148.0" fitWidth="92.0" layoutX="14.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="Borrar" layoutX="379.0" layoutY="133.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="32.0" prefWidth="73.0" text="Borrar" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="0.0" prefWidth="598.0">
          <children>
-            <TableView fx:id="tabla" onMouseClicked="#Editar" prefHeight="232.0" prefWidth="599.0">
+            <TableView fx:id="Tabla" onMouseClicked="#Editar" prefHeight="232.0" prefWidth="599.0">
                <columns>
-                  <TableColumn fx:id="col_nombre" prefWidth="120.79995423555374" text="Nombre" />
-                  <TableColumn fx:id="col_apellido" prefWidth="143.2000274658203" text="Apellido" />
-                  <TableColumn fx:id="col_email" prefWidth="134.0" text="email" />
-                  <TableColumn fx:id="col_sexo" prefWidth="103.0" text="G.Sang" />
-                  <TableColumn fx:id="col_casado" prefWidth="100.0" text="Telefono" />
-                  <TableColumn fx:id="col_sexo2" prefWidth="103.0" text="G.Sang" />
+                  <TableColumn fx:id="NombreT" prefWidth="120.79995423555374" text="Nombre" />
+                  <TableColumn fx:id="ApellidoT" prefWidth="143.2000274658203" text="Apellido" />
+                  <TableColumn fx:id="emailT" prefWidth="134.0" text="email" />
+                  <TableColumn fx:id="GSangT" prefWidth="103.0" text="G.Sang" />
+                  <TableColumn fx:id="TelefonoT" prefWidth="100.0" text="Telefono" />
                </columns>
             </TableView>
          </children>
