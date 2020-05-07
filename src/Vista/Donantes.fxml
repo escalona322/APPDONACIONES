@@ -46,7 +46,7 @@
       </AnchorPane>
       <AnchorPane prefHeight="0.0" prefWidth="598.0">
          <children>
-            <TableView fx:id="Tabla" onMouseClicked="#Editar" prefHeight="232.0" prefWidth="599.0">
+            <TableView fx:id="Tabla" prefHeight="232.0" prefWidth="599.0">
                <columns>
                   <TableColumn fx:id="NombreT" prefWidth="120.79995423555374" text="Nombre" />
                   <TableColumn fx:id="ApellidoT" prefWidth="143.2000274658203" text="Apellido" />

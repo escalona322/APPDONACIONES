@@ -6,12 +6,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
 
 
 public class Main extends Application {
 
 	private Stage primaryStage;
-	private SplitPane rootLayout;
+	private AnchorPane rootLayout;
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -21,8 +22,8 @@ public class Main extends Application {
 
 			 // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("..\\Vista\\UIFormTabla.fxml"));
-            rootLayout = (SplitPane) loader.load();
+            loader.setLocation(Main.class.getResource("..\\Vista\\MainMenu.fxml"));
+            rootLayout = (AnchorPane) loader.load();
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
