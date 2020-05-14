@@ -66,11 +66,10 @@ public class Conexion {
 	
 	//Insertar donante
 	public int InsertarDonante(String Cod_Postal, int Telefono, String ID, String email, 
-			String Apellido1, String Apellido2, String Nombre, String Estado, File foto,
-			String FechaNacimiento, String GrupoSang, String Ciclo) throws SQLException, FileNotFoundException{
+			String Apellido1, String Apellido2, String Nombre, String Estado, String FechaNacimiento, String GrupoSang, String Ciclo) throws SQLException, FileNotFoundException{
 		
 		//Cuento los donantes para que NumDonantese pueda introducir automaticamente
-		String ContarDonantes = "SELECT N_Donante"+usr+"FROM DONANTE where N_Donante = (Select max(N_Donante) from "+usr+".Donante";
+		String ContarDonantes = "SELECT N_Donante FROM "+usr+".DONANTE where N_Donante = (Select max(N_Donante) FROM "+usr+"DONANTE)";
 		Statement stm = conexion.createStatement();
 		ResultSet cuenta = stm.executeQuery(ContarDonantes);
 		// Preparo la sentencia SQL
@@ -88,10 +87,8 @@ public class Conexion {
 		pstmt.setString(8, Nombre);
 		pstmt.setString(9, Estado);
 		pstmt.setString(10, FechaNacimiento);
-		FileInputStream convertir_imagen = new FileInputStream (foto);
-		pstmt.setBlob(11, convertir_imagen, foto.length());
-		pstmt.setString(12, GrupoSang);
-		pstmt.setString(13, Ciclo);
+		pstmt.setString(11, GrupoSang);
+		pstmt.setString(12, Ciclo);
 		//ejecuto la sentencia
 		try{
 			int resultado = pstmt.executeUpdate();
@@ -126,7 +123,7 @@ public class Conexion {
 			String Cod_Postal, String FechaNacimiento) throws SQLException{
 
 
-		String updatesql = "UPDATE"+usr+".DONANTE SET Nombre=?, Apellido1=?, Apellido2=?, Identificacion=?, email=?, GrupoSang=?, Ciclo=?, Cod_Postal=?, Fecha_nacim=?, Telefono=? where Identificacion=?";
+		String updatesql = "UPDATE "+usr+".DONANTE SET Nombre=?, Apellido1=?, Apellido2=?, Identificacion=?, email=?, GrupoSang=?, Ciclo=?, Cod_Postal=?, Fecha_nacim=?, Telefono=? where Identificacion=?";
 
 		PreparedStatement pstmt = conexion.prepareStatement (updatesql);
 		pstmt.setString(1, Nombre);
@@ -271,31 +268,50 @@ public class Conexion {
 							pstmt = conexion.prepareStatement (selectsql);
 						}
 						else{
-							selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Apellido1 LIKE ?%";
+							selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Apellido1=?";
 							pstmt = conexion.prepareStatement (selectsql);
+							pstmt.setString(1, Apellido);
 						}
 					}
 					else{
-						selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Nombre LIKE ?%";
+						selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Nombre=?";
 						pstmt = conexion.prepareStatement (selectsql);
+						pstmt.setString(1, Nombre);
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Aviso!");
+						alert.setHeaderText("Se ha usado un orden de prioridad!!");
+						alert.setContentText("Al buscar por varios campos se busca con este orden: ID>Email>Tlfno>Nombre>Apellido!");
+						alert.showAndWait();
 
 					}
 				}
 				else{
-					selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE telefono LIKE ?%";
+					selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE telefono=?";
 					pstmt = conexion.prepareStatement (selectsql);
+					Alert alert = new Alert(AlertType.INFORMATION);
+					pstmt.setString(1, telefono);
+					alert.setTitle("Aviso!");
+					alert.setHeaderText("Se ha usado un orden de prioridad!!");
+					alert.setContentText("Al buscar por varios campos se busca con este orden: ID>Email>Tlfno>Nombre>Apellido!");
+					alert.showAndWait();
 
 				}
 			}
 			else{
-				selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE email LIKE ?%";
+				selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE email=?";
 				pstmt = conexion.prepareStatement (selectsql);
+				pstmt.setString(1, email);
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Aviso!");
+				alert.setHeaderText("Se ha usado un orden de prioridad!!");
+				alert.setContentText("Al buscar por varios campos se busca con este orden: ID>Email>Tlfno>Nombre>Apellido!");
+				alert.showAndWait();
 			}
 		}
 		else{
-			selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Identificacion LIKE ?%";
+			selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Identificacion=?";
 			pstmt = conexion.prepareStatement (selectsql);
-			
+			pstmt.setString(1, Identificacion);
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Aviso!");
 			alert.setHeaderText("Se ha usado un orden de prioridad!!");
@@ -323,9 +339,10 @@ public class Conexion {
 				String apellido2 = resultado.getString(7);
 				String nombre = resultado.getString(8);
 				String estado = resultado.getString(9);
-				String fecha_Nac = resultado.getString(10);
-				String grupoSang = resultado.getString(11);
-				String ciclo2 = resultado.getString(12);
+				Blob foto = resultado.getBlob(10);
+				String fecha_Nac = resultado.getString(11);
+				String grupoSang = resultado.getString(12);
+				String ciclo2 = resultado.getString(13);
 
 				Donante nueva = new Donante(N_Donante, Cod_Postal, telefono2, identificacion, email2,
 						apellido1, apellido2, nombre, estado, fecha_Nac, grupoSang,
@@ -339,7 +356,7 @@ public class Conexion {
 		}catch(SQLException sqle){
 
 			int pos = sqle.getMessage().indexOf(":");
-			String codeErrorSQL = sqle.getMessage().substring(0,pos);
+			String codeErrorSQL = sqle.getMessage();
 
 			System.out.println(codeErrorSQL);
 		}
@@ -347,17 +364,7 @@ public class Conexion {
 		return listadonantes;
 	}
 	
-	public byte[] LeerFoto(String Identificacion) throws SQLException{
-		
-		byte[] byteImage = null;
-		
-		try{
-			//Sentencia sql
-			String selectfoto = "SELECT "
-		}catch(SQLException sqle){
-			
-		}
 		
 	}
 
-}
+

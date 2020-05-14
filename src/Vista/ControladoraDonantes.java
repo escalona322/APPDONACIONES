@@ -1,16 +1,24 @@
 package Vista;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import Modelo.Conexion;
+
 import Modelo.Donante;
+
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -19,7 +27,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
 public class ControladoraDonantes {
 	
@@ -66,9 +77,6 @@ public class ControladoraDonantes {
 	private DatePicker FechaNacimiento;
 	
 	@FXML
-	private ImageView Foto;
-	
-	@FXML
 	private Button Insertar;
 	
 	@FXML
@@ -82,6 +90,12 @@ public class ControladoraDonantes {
 	
 	@FXML
 	private Button Imprimir;
+	
+	@FXML
+	private Button BuscarImagen;
+	
+	@FXML 
+	private TextField RutaImagen;
 	
 	@FXML 
 	private TextField BuscarNombre;
@@ -120,7 +134,7 @@ public class ControladoraDonantes {
 	private TableColumn<Donante,String> GSangT;
 	
 	@FXML
-	private TableColumn<Donante,String> TelefonoT;
+	private TableColumn<Donante, Integer> TelefonoT;
 	
 	ObservableList<Donante> datos = FXCollections.observableArrayList();
 	
@@ -130,7 +144,7 @@ public class ControladoraDonantes {
 
 	public void initialize() throws SQLException{
 
-		// Llamar a un método de la clase de manipulación de BBDD para que me devuelva un ObservableList<Persona> datos
+		// Llamar a un método de la clase de manipulación de BBDD para que me devuelva un ObservableList<Donante> datos
 
 		Conexion con = new Conexion();
 		datos = con.ObtenerDonantes();
@@ -141,15 +155,16 @@ public class ControladoraDonantes {
 		ApellidoT.setCellValueFactory(new PropertyValueFactory<Donante,String>("Apellido1"));
 		emailT.setCellValueFactory(new PropertyValueFactory<Donante,String>("email"));
 		GSangT.setCellValueFactory(new PropertyValueFactory<Donante,String>("GrupoSang"));
-		TelefonoT.setCellValueFactory(new PropertyValueFactory<Donante,String>("Telefono"));
-
+		TelefonoT.setCellValueFactory(new PropertyValueFactory<Donante,Integer>("Telefono"));
+		
+	
 		// Al arrancar la vista se pone edicion a false
 		edicion = false;
 		indiceedicion = 0;
 
 	}
 	
-	public void InsertarDonante(){
+	public void InsertarDonante() throws NumberFormatException, FileNotFoundException, SQLException{
 
 		// Añadir un chequeo de campos vacíos
 		if(Nombre.getText().equals("") || Apellido1.getText().equals("") || Apellido2.getText().equals("") || email.getText().equals("") || Identificacion.getText().equals("")|| Telefono.getText().equals("") || Ciclo.getText().equals("") || CodigoPostal.getText().equals("")){
@@ -215,8 +230,25 @@ public class ControladoraDonantes {
 			else{
 				// Realizar el insertado de datos en la base de datos
 				Conexion con = new Conexion();
-				File foto = new File();
-				int res = con.InsertarDonante(CodigoPostal.getText(), Integer.parseInt(Telefono.getText()), Identificacion.getText(), email.getText(), Apellido1.getText(), Apellido2.getText(), Nombre.getText(), null, foto, FechaNacimiento.getValue().toString(), GrupoSang, Ciclo.getText());
+			
+				String GrupoSang = "";
+				if(A.isSelected()){
+					GrupoSang = "A";
+				}
+				else{
+					if(B.isSelected()){
+						GrupoSang = "B";
+					}else{
+						if(AB.isSelected()){
+							GrupoSang = "AB";
+						}else{
+							if(Cero.isSelected()){
+								GrupoSang = "0";
+							}
+					}
+					}
+				}
+				int res = con.InsertarDonante(CodigoPostal.getText(), Integer.parseInt(Telefono.getText()), Identificacion.getText(), email.getText(), Apellido1.getText(), Apellido2.getText(), Nombre.getText(), null, FechaNacimiento.getValue().toString(), GrupoSang, Ciclo.getText());
 				switch (res){
 
 				case 0:
@@ -255,24 +287,146 @@ public class ControladoraDonantes {
 
 	}
 	
-	public void ModificarDonante(){
+	
+	
+	public void ModificarDonante() throws SQLException{
+
+		Conexion con = new Conexion();
+		
+		int index = Tabla.getSelectionModel().getSelectedIndex();
+
+
+		if( index >= 0){
+
+			// Activo la "funcionalidad" de editar para luego que el botón guardar sepa a qué PErsona estoy "editando"
+			edicion = true;
+			indiceedicion = index;
+
+
+			Donante seleccionada = Tabla.getSelectionModel().getSelectedItem();
+
+			Nombre.setText(seleccionada.getNombre());
+			Apellido1.setText(seleccionada.getApellido1());
+			Apellido2.setText(seleccionada.getApellido2());
+			Identificacion.setText(seleccionada.getIdentificacion());
+			Telefono.setText(String.valueOf(seleccionada.getTelefono()));
+			Ciclo.setText(seleccionada.getCiclo());
+			email.setText(seleccionada.getEmail());
+			CodigoPostal.setText(seleccionada.getCod_Postal());
+			LocalDate setfecha = LocalDate.parse(seleccionada.getFecha_Nac().substring(0, 10));
+			FechaNacimiento.setValue(setfecha);
+			
+			
+			if(seleccionada.getGrupoSang().equals("A")){
+				A.setSelected(true);
+			}else{
+				if(seleccionada.getGrupoSang().equals("B")){
+					B.setSelected(true);
+				}else{
+					if(seleccionada.getGrupoSang().equals("AB")){
+						AB.setSelected(true);
+					}else{
+						Cero.setSelected(true);	
+					}
+				}
+			}
+		}
+		
 		
 	}
 	
-	public void EliminarDonante(){
-		
+	public void EliminarDonante() throws SQLException{
+		int index = Tabla.getSelectionModel().getSelectedIndex();
+		if( index >= 0){
+
+			Donante seleccionada = Tabla.getSelectionModel().getSelectedItem();
+
+			// Se abre un dialog box de confirmacion de eliminar
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Conformación!!!");
+			alert.setHeaderText("Por favor confirme el borrado");
+			alert.setContentText("Dese borrar al usuario "+ seleccionada.getNombre() + " " +seleccionada.getApellido1() +" ?");
+
+			Optional<ButtonType> result = alert.showAndWait();
+			if (result.get() == ButtonType.OK){
+			    // ... user chose OK
+
+				// Llamar a un método que realice el DELETE en la base de datos
+				Conexion con = new Conexion();
+				int res = con.BorrarDonante(seleccionada.getEmail());
+				switch(res){
+					case 0:
+						alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("OK!");
+						alert.setHeaderText("Borrado OK!");
+						alert.setContentText("¡Persona borrada con éxito!");
+						alert.showAndWait();
+
+						// Actualizo los datos de la tabla
+						datos = con.ObtenerDonantes();
+						Tabla.setItems(datos);
+						break;
+
+					default:
+						alert = new Alert(AlertType.ERROR);
+						alert.setTitle("Error!");
+						alert.setHeaderText("Inserción NOK!");
+						alert.setContentText("¡Ha habido un problema al realizar la inserción!");
+						alert.showAndWait();
+						break;
+				}
+
+				Borrar();
+			}
+
+		}else{
+
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Error en selección de datos");
+			alert.setContentText("NO HAY NINGUN ELEMENTO SELECCIONADO!");
+			alert.showAndWait();
+
+		}
 	}
 	
 	public void Borrar(){
+		Nombre.setText("");
+		Apellido1.setText("");
+		Apellido2.setText("");
+		Identificacion.setText("");
+		Telefono.setText("");
+		Ciclo.setText("");
+		email.setText("");
+		CodigoPostal.setText("");
+		FechaNacimiento.setValue(null);
 		
+		A.setSelected(false);
+		AB.setSelected(false);
+		B.setSelected(false);
+		Cero.setSelected(false);
 	}
 	
 	public void GenerarCarnet(){
 		
 	}
 	
-	public void Buscar(){
+	public void Buscar() throws SQLException{
 		
+		
+		
+		String Nombre = BuscarNombre.getText();
+		String Apellido = BuscarApellido.getText();
+		String email = BuscarEmail.getText();
+		String Identificacion = BuscarID.getText();
+		String telefono = BuscarTelefono.getText();
+		String ciclo = BuscarCiclo.getText();
+
+		// llama a un  método  que haga el select de la base de datos
+		Conexion con = new Conexion();
+		datos = con.BuscarDonantes(Nombre, Apellido, email, Identificacion, telefono, ciclo);
+
+		Tabla.setItems(datos);
 	}
 
 }

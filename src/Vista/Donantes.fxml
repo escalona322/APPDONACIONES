@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
@@ -18,14 +17,14 @@
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="598.0">
          <children>
             <Label layoutX="240.0" layoutY="14.0" text="Administrar Donantes." />
-            <TextField fx:id="Nombre" layoutX="22.0" layoutY="19.0" prefHeight="26.0" prefWidth="100.0" text="Nombre" />
-            <TextField fx:id="Apellido2" layoutX="131.0" layoutY="91.0" prefHeight="26.0" prefWidth="100.0" text="2º Apellido" />
-            <TextField fx:id="Apellido1" layoutX="125.0" layoutY="49.0" prefHeight="26.0" prefWidth="100.0" text="1er Apellido" />
-            <TextField fx:id="Identificacion" layoutX="131.0" layoutY="133.0" prefHeight="26.0" prefWidth="100.0" text="Identificacion" />
-            <TextField fx:id="Telefono" layoutX="131.0" layoutY="166.0" prefHeight="26.0" prefWidth="100.0" text="Teléfono" />
+            <TextField fx:id="Nombre" layoutX="131.0" layoutY="49.0" prefHeight="26.0" prefWidth="100.0" text="Nombre" />
+            <TextField fx:id="Apellido2" layoutX="131.0" layoutY="120.0" prefHeight="26.0" prefWidth="100.0" text="2º Apellido" />
+            <TextField fx:id="Apellido1" layoutX="131.0" layoutY="91.0" prefHeight="26.0" prefWidth="100.0" text="1er Apellido" />
+            <TextField fx:id="Identificacion" layoutX="131.0" layoutY="153.0" prefHeight="26.0" prefWidth="100.0" text="Identificacion" />
+            <TextField fx:id="Telefono" layoutX="131.0" layoutY="192.0" prefHeight="26.0" prefWidth="100.0" text="Teléfono" />
             <TextField fx:id="Ciclo" layoutX="249.0" layoutY="49.0" prefHeight="26.0" prefWidth="100.0" text="Ciclo" />
             <TextField fx:id="email" layoutX="249.0" layoutY="91.0" prefHeight="26.0" prefWidth="100.0" text="email" />
-            <TextField fx:id="CodigoPostal" layoutX="249.0" layoutY="133.0" prefHeight="26.0" prefWidth="100.0" text="Código Postal" />
+            <TextField fx:id="CodigoPostal" layoutX="249.0" layoutY="120.0" prefHeight="26.0" prefWidth="100.0" text="Código Postal" />
             <DatePicker fx:id="FechaNacimiento" layoutX="257.0" layoutY="166.0" prefHeight="26.0" prefWidth="100.0" />
             <Button fx:id="Insertar" layoutX="379.0" layoutY="46.0" mnemonicParsing="false" onAction="#InsertarDonante" prefHeight="32.0" prefWidth="73.0" text="Añadir" />
             <Button fx:id="Modificar" layoutX="379.0" layoutY="93.0" mnemonicParsing="false" onAction="#ModificarDonante" text="Modificar" />
@@ -41,23 +40,21 @@
             <TextField fx:id="BuscarID" layoutX="498.0" layoutY="179.0" prefHeight="26.0" prefWidth="92.0" text="Identificacion" />
             <TextField fx:id="BuscarCiclo" layoutX="498.0" layoutY="208.0" prefHeight="26.0" prefWidth="86.0" text="Ciclo" />
             <Button fx:id="Buscar" layoutX="511.0" layoutY="237.0" mnemonicParsing="false" onAction="#Buscar" text="Buscar!" />
-            <ImageView fx:id="Foto" fitHeight="148.0" fitWidth="92.0" layoutX="25.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="Borrar" layoutX="379.0" layoutY="133.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="32.0" prefWidth="73.0" text="Borrar" />
             <Label layoutX="128.0" layoutY="225.0" text="Grupo Sanguineo:" />
-            <RadioButton layoutX="244.0" layoutY="195.0" mnemonicParsing="false" text="A">
+            <RadioButton fx:id="A" layoutX="244.0" layoutY="195.0" mnemonicParsing="false" text="A">
                <toggleGroup>
                   <ToggleGroup fx:id="GrupoS" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="312.0" layoutY="195.0" mnemonicParsing="false" text="AB" toggleGroup="$GrupoS" />
-            <RadioButton layoutX="245.0" layoutY="228.0" mnemonicParsing="false" text="0" toggleGroup="$GrupoS" />
-            <RadioButton layoutX="317.0" layoutY="228.0" mnemonicParsing="false" text="B" toggleGroup="$GrupoS" />
-            <Button layoutY="218.0" mnemonicParsing="false" text="Buscar Imagen" />
+            <RadioButton fx:id="AB" layoutX="312.0" layoutY="195.0" mnemonicParsing="false" text="AB" toggleGroup="$GrupoS" />
+            <RadioButton fx:id="Cero" layoutX="245.0" layoutY="228.0" mnemonicParsing="false" text="0" toggleGroup="$GrupoS" />
+            <RadioButton fx:id="B" layoutX="317.0" layoutY="228.0" mnemonicParsing="false" text="B" toggleGroup="$GrupoS" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="0.0" prefWidth="598.0">
          <children>
-            <TableView fx:id="Tabla" prefHeight="232.0" prefWidth="599.0">
+            <TableView fx:id="Tabla" onMouseClicked="#ModificarDonante" prefHeight="232.0" prefWidth="599.0">
                <columns>
                   <TableColumn fx:id="NombreT" prefWidth="120.79995423555374" text="Nombre" />
                   <TableColumn fx:id="ApellidoT" prefWidth="143.2000274658203" text="Apellido" />

@@ -1,5 +1,8 @@
 package Modelo;
 
+import java.io.File;
+import java.sql.Blob;
+
 public class Donante {
 	private int N_Donante;
 	private String Cod_Postal;

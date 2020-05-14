@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
@@ -13,11 +14,131 @@
          <children>
             <Line endX="366.0" layoutX="101.0" layoutY="78.0" startX="-100.0" />
             <Label layoutX="177.0" layoutY="29.0" prefHeight="31.0" prefWidth="115.0" text="Nueva Donación" />
-            <Label layoutX="76.0" layoutY="120.0" prefHeight="31.0" prefWidth="101.0" text="Numero Donante:" />
-            <TextField fx:id="NumDonante" layoutX="177.0" layoutY="117.0" prefHeight="31.0" prefWidth="115.0" />
-            <ChoiceBox fx:id="Formulario" layoutX="85.0" layoutY="188.0" prefWidth="150.0" />
-            <Button fx:id="ConfirmarFormulario" layoutX="307.0" layoutY="182.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="144.0" text="Confirmar Formulario" />
-            <Button fx:id="SiguienteVentana" layoutX="199.0" layoutY="338.0" mnemonicParsing="false" onAction="#SiguienteVentana" prefHeight="49.0" prefWidth="71.0" text="Siguiente" />
+            <Label layoutX="20.0" layoutY="86.0" prefHeight="31.0" prefWidth="101.0" text="Numero Donante:" />
+            <TextField fx:id="NumDonante" layoutX="120.0" layoutY="86.0" prefHeight="31.0" prefWidth="115.0" />
+            <Button fx:id="ConfirmarFormulario" layoutX="162.0" layoutY="351.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="144.0" text="Confirmar Formulario" />
+            <Button fx:id="SiguienteVentana" layoutX="199.0" layoutY="396.0" mnemonicParsing="false" onAction="#SiguienteVentana" prefHeight="49.0" prefWidth="71.0" text="Siguiente" />
+            <Label layoutX="47.0" layoutY="144.0" text="1:" />
+            <Label layoutX="47.0" layoutY="169.0" text="2:" />
+            <RadioButton layoutX="57.0" layoutY="144.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta1" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="144.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta1" />
+            <RadioButton layoutX="57.0" layoutY="169.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta2" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="169.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta2" />
+            <Label layoutX="47.0" layoutY="189.0" text="3:" />
+            <RadioButton layoutX="55.0" layoutY="189.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta3" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="189.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta3" />
+            <Label layoutX="47.0" layoutY="211.0" text="4:" />
+            <RadioButton layoutX="57.0" layoutY="211.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta4" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="211.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta4" />
+            <Label layoutX="47.0" layoutY="236.0" text="5:" />
+            <RadioButton layoutX="57.0" layoutY="236.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta5" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="236.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta5" />
+            <Label layoutX="47.0" layoutY="260.0" text="6:" />
+            <RadioButton layoutX="55.0" layoutY="260.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta6" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="260.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta6" />
+            <Label layoutX="47.0" layoutY="284.0" text="7:" />
+            <RadioButton layoutX="57.0" layoutY="284.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta7" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="284.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta7" />
+            <Label layoutX="47.0" layoutY="307.0" text="8:" />
+            <RadioButton layoutX="57.0" layoutY="307.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta8" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="307.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta8" />
+            <Label layoutX="47.0" layoutY="334.0" text="9:" />
+            <RadioButton layoutX="57.0" layoutY="334.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta9" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="334.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta9" />
+            <Label layoutX="39.0" layoutY="362.0" text="10:" />
+            <RadioButton layoutX="55.0" layoutY="362.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta10" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="362.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta10" />
+            <Label layoutX="39.0" layoutY="388.0" text="11:" />
+            <RadioButton layoutX="55.0" layoutY="388.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta11" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="388.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta11" />
+            <Label layoutX="39.0" layoutY="412.0" text="12:" />
+            <RadioButton layoutX="55.0" layoutY="412.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta12" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="95.0" layoutY="412.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta12" />
+            <Label layoutX="44.0" layoutY="117.0" prefHeight="17.0" prefWidth="84.0" text="Respuestas:" />
+            <Label layoutX="172.0" layoutY="144.0" text="13:" />
+            <RadioButton layoutX="188.0" layoutY="144.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta13" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="224.0" layoutY="144.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta13" />
+            <Label layoutX="172.0" layoutY="169.0" text="14:" />
+            <RadioButton layoutX="188.0" layoutY="169.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta14" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="224.0" layoutY="169.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta14" />
+            <Label layoutX="172.0" layoutY="189.0" text="15:" />
+            <RadioButton layoutX="188.0" layoutY="189.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta15" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="224.0" layoutY="189.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta15" />
+            <Label layoutX="172.0" layoutY="211.0" text="16:" />
+            <RadioButton layoutX="188.0" layoutY="211.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta16" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="224.0" layoutY="211.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta16" />
+            <Label layoutX="172.0" layoutY="236.0" text="17:" />
+            <RadioButton layoutX="188.0" layoutY="236.0" mnemonicParsing="false" text="Si">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Pregunta17" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="220.0" layoutY="236.0" mnemonicParsing="false" text="No" toggleGroup="$Pregunta17" />
+            <Label layoutX="172.0" layoutY="260.0" text="18:" />
          </children>
       </AnchorPane>
    </children>
