@@ -70,8 +70,7 @@ public class ControladoraMainMenu {
 	
 	public void BttnMenuInformes(){
 		try{
-			 
-			 
+			 			 
 			FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Informes.fxml"));
 			Parent root1= (Parent)fxmlLoader.load();
 			 
