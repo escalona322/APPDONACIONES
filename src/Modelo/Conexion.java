@@ -69,12 +69,16 @@ public class Conexion {
 			String Apellido1, String Apellido2, String Nombre, String Estado, String FechaNacimiento, String GrupoSang, String Ciclo) throws SQLException, FileNotFoundException{
 		
 		//Cuento los donantes para que NumDonantese pueda introducir automaticamente
-		String ContarDonantes = "SELECT N_Donante FROM "+usr+".DONANTE where N_Donante = (Select max(N_Donante) FROM "+usr+"DONANTE)";
+		String ContarDonantes = "SELECT N_Donante FROM "+usr+".DONANTE where N_Donante = (Select max(N_Donante) FROM "+usr+".DONANTE)";
 		Statement stm = conexion.createStatement();
 		ResultSet cuenta = stm.executeQuery(ContarDonantes);
-		// Preparo la sentencia SQL
-		int SiguienteNumDonante = cuenta.getInt(1)+1;
-		String insertsql = "INSERT INTO "+usr+".DONANTE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		int numaux = 0;
+		while(cuenta.next()){
+			int numdonantes = cuenta.getInt(1);
+			numaux = numdonantes;
+		}
+		int SiguienteNumDonante = numaux+1;
+		String insertsql = "INSERT INTO "+usr+".DONANTE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		PreparedStatement pstmt = conexion.prepareStatement (insertsql);
 		pstmt.setInt(1, SiguienteNumDonante);
@@ -109,7 +113,8 @@ public class Conexion {
 				return 1;
 			}
 			else{
-				System.out.println("Ha habido algún problema con  Oracle al hacer la insercion");
+				System.out.println(sqle.toString());
+				System.out.println("Ha habido algún problema con  Oracle al hacer la insercion1");
 				return 2;
 			}
 
@@ -123,7 +128,7 @@ public class Conexion {
 			String Cod_Postal, String FechaNacimiento) throws SQLException{
 
 
-		String updatesql = "UPDATE "+usr+".DONANTE SET Nombre=?, Apellido1=?, Apellido2=?, Identificacion=?, email=?, GrupoSang=?, Ciclo=?, Cod_Postal=?, Fecha_nacim=?, Telefono=? where Identificacion=?";
+		String updatesql = "UPDATE "+usr+".DONANTE SET Nombre=?, Apellido1=?, Apellido2=?, Identificacion=?, email=?, Grupo_Sang=?, Ciclo=?, Cod_Postal=?, Fecha_nacim='"+FechaNacimiento+"', Telefono=? where Identificacion=?";
 
 		PreparedStatement pstmt = conexion.prepareStatement (updatesql);
 		pstmt.setString(1, Nombre);
@@ -134,9 +139,8 @@ public class Conexion {
 		pstmt.setString(6, GrupoSang);
 		pstmt.setString(7, Ciclo);
 		pstmt.setString(8, Cod_Postal);
-		pstmt.setString(9, FechaNacimiento);
-		pstmt.setInt(10, telefono);
-		pstmt.setString(11, ID);
+		pstmt.setInt(9, telefono);
+		pstmt.setString(10, ID);
 
 
 		//ejecuto la sentencia
@@ -159,7 +163,8 @@ public class Conexion {
 				return 1;
 			}
 			else{
-				System.out.println("Ha habido algún problema con Oracle al hacer la insercion");
+				System.out.println(sqle.toString());
+				System.out.println("Ha habido algún problema con Oracle al hacer la insercion2");
 				return 2;
 			}
 
@@ -259,22 +264,22 @@ public class Conexion {
 		 * Tambien se contara al usuario como es ese orden si se usa.
 		 */
 		String selectsql = "";
-		if(Identificacion.equals("")){
-			if(email.equals("")){
-				if(telefono.equals("")){
-					if(Nombre.equals("")){
-						if(Apellido.equals("")){
+		if(Identificacion.equals("") || Identificacion.equals("Identificacion")){
+			if(email.equals("") || email.equals("Email")){
+				if(telefono.equals("") || telefono.equals("Telefono")){
+					if(Nombre.equals("") || Nombre.equals("Nombre")){
+						if(Apellido.equals("") || Apellido.equals("Apellido")){
 							selectsql = "SELECT * FROM " + usr +".DONANTE";
 							pstmt = conexion.prepareStatement (selectsql);
 						}
 						else{
-							selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Apellido1=?";
+							selectsql = "SELECT * FROM " + usr +".DONANTE WHERE Apellido1=?";
 							pstmt = conexion.prepareStatement (selectsql);
 							pstmt.setString(1, Apellido);
 						}
 					}
 					else{
-						selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Nombre=?";
+						selectsql = "SELECT * FROM " + usr +".DONANTE WHERE Nombre=?";
 						pstmt = conexion.prepareStatement (selectsql);
 						pstmt.setString(1, Nombre);
 						Alert alert = new Alert(AlertType.INFORMATION);
@@ -286,7 +291,7 @@ public class Conexion {
 					}
 				}
 				else{
-					selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE telefono=?";
+					selectsql = "SELECT * FROM " + usr +".DONANTE WHERE telefono=?";
 					pstmt = conexion.prepareStatement (selectsql);
 					Alert alert = new Alert(AlertType.INFORMATION);
 					pstmt.setString(1, telefono);
@@ -298,7 +303,7 @@ public class Conexion {
 				}
 			}
 			else{
-				selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE email=?";
+				selectsql = "SELECT * FROM " + usr +".DONANTE WHERE email=?";
 				pstmt = conexion.prepareStatement (selectsql);
 				pstmt.setString(1, email);
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -309,7 +314,7 @@ public class Conexion {
 			}
 		}
 		else{
-			selectsql = "SELECT * FROM " + usr +".PERSONAS WHERE Identificacion=?";
+			selectsql = "SELECT * FROM " + usr +".DONANTE WHERE Identificacion=?";
 			pstmt = conexion.prepareStatement (selectsql);
 			pstmt.setString(1, Identificacion);
 			Alert alert = new Alert(AlertType.INFORMATION);
@@ -339,10 +344,9 @@ public class Conexion {
 				String apellido2 = resultado.getString(7);
 				String nombre = resultado.getString(8);
 				String estado = resultado.getString(9);
-				Blob foto = resultado.getBlob(10);
-				String fecha_Nac = resultado.getString(11);
-				String grupoSang = resultado.getString(12);
-				String ciclo2 = resultado.getString(13);
+				String fecha_Nac = resultado.getString(10);
+				String grupoSang = resultado.getString(11);
+				String ciclo2 = resultado.getString(12);
 
 				Donante nueva = new Donante(N_Donante, Cod_Postal, telefono2, identificacion, email2,
 						apellido1, apellido2, nombre, estado, fecha_Nac, grupoSang,

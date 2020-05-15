@@ -8,10 +8,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+import com.itextpdf.text.DocumentException;
+
 import Modelo.Conexion;
 
+import Vista.ImprimeArchivo;
 import Modelo.Donante;
-
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -197,8 +199,17 @@ public class ControladoraDonantes {
 					}
 					}
 				}
-				
-				int res = con.ModificarDonante(Nombre.getText(), Apellido1.getText(), Apellido2.getText(), Identificacion.getText(), email.getText(), GrupoSang, Ciclo.getText(), Integer.parseInt(Telefono.getText()), CodigoPostal.getText(), FechaNacimiento.getValue().toString());
+				DateTimeFormatter isoFecha = DateTimeFormatter.ISO_LOCAL_DATE;
+				  String fecha_n = FechaNacimiento.getValue().format(isoFecha);
+				 
+				  //mes-dia-año
+				  String mes=  fecha_n.substring(8, 10);
+				  String dia= fecha_n.substring(5, 7);
+				  String año= fecha_n.substring(0, 4);
+				 
+				  String fecha_na= mes+ "-" + dia + "-" + año;
+
+				int res = con.ModificarDonante(Nombre.getText(), Apellido1.getText(), Apellido2.getText(), Identificacion.getText(), email.getText(), GrupoSang, Ciclo.getText(), Integer.parseInt(Telefono.getText()), CodigoPostal.getText(), fecha_na);
 				switch (res){
 
 					case 0:
@@ -248,7 +259,18 @@ public class ControladoraDonantes {
 					}
 					}
 				}
-				int res = con.InsertarDonante(CodigoPostal.getText(), Integer.parseInt(Telefono.getText()), Identificacion.getText(), email.getText(), Apellido1.getText(), Apellido2.getText(), Nombre.getText(), null, FechaNacimiento.getValue().toString(), GrupoSang, Ciclo.getText());
+				
+				DateTimeFormatter isoFecha = DateTimeFormatter.ISO_LOCAL_DATE;
+				  String fecha_n = FechaNacimiento.getValue().format(isoFecha);
+				 
+				  //mes-dia-año
+				  String mes=  fecha_n.substring(8, 10);
+				  String dia= fecha_n.substring(5, 7);
+				  String año= fecha_n.substring(0, 4);
+				 
+				  String fecha_na= mes+ "-" + dia + "-" + año;
+				  
+				int res = con.InsertarDonante(CodigoPostal.getText(), Integer.parseInt(Telefono.getText()), Identificacion.getText(), email.getText(), Apellido1.getText(), Apellido2.getText(), Nombre.getText(), "", fecha_na, GrupoSang, Ciclo.getText());
 				switch (res){
 
 				case 0:
@@ -391,14 +413,15 @@ public class ControladoraDonantes {
 	}
 	
 	public void Borrar(){
-		Nombre.setText("");
-		Apellido1.setText("");
-		Apellido2.setText("");
-		Identificacion.setText("");
-		Telefono.setText("");
-		Ciclo.setText("");
-		email.setText("");
-		CodigoPostal.setText("");
+		edicion = false;
+		Nombre.setText("Nombre");
+		Apellido1.setText("Apellido1");
+		Apellido2.setText("Apellido2");
+		Identificacion.setText("Identificacion");
+		Telefono.setText("Telefono");
+		Ciclo.setText("Ciclo");
+		email.setText("Email");
+		CodigoPostal.setText("CodigoPostal");
 		FechaNacimiento.setValue(null);
 		
 		A.setSelected(false);
@@ -407,7 +430,29 @@ public class ControladoraDonantes {
 		Cero.setSelected(false);
 	}
 	
-	public void GenerarCarnet(){
+	public void GenerarCarnet() throws FileNotFoundException, DocumentException{
+		int index = Tabla.getSelectionModel().getSelectedIndex();
+		if( index >= 0){
+
+			Donante seleccionada = Tabla.getSelectionModel().getSelectedItem();
+			int numdonante = seleccionada.getN_Donante();
+			String nombre = seleccionada.getNombre();
+			String apellido1 = seleccionada.getApellido1();
+			String apellido2 = seleccionada.getApellido2();
+			String estado = seleccionada.getEstado();
+			String gruposanguineo = seleccionada.getGrupoSang();
+			
+			ImprimeArchivo imprime = new ImprimeArchivo("CarnetDonante"+numdonante, "C:\\Users\\Jose Antonio\\Documents\\PDFSDONANTE\\");
+			
+			imprime.generarArchivoPDF(nombre, numdonante, apellido1, apellido2, estado, gruposanguineo);
+		}else{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("No has seleccionado un donante.");
+			alert.setContentText("Pincha en la tabla para seleccionar un donante.");
+			alert.showAndWait();
+		}
+		
 		
 	}
 	

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="644.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <content>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1012.0" prefWidth="644.0">
+         <children>
+            <Label layoutX="5.0" layoutY="36.0" text="1.-¿Su edad esta comprendida entre los 18 y los 65 años? ......................................................................................................... " />
+            <Label layoutX="5.0" layoutY="59.0" text="2.- ¿Se encuentra bien hoy? ..................................................................................................................................................................... " />
+            <Label layoutX="5.0" layoutY="79.0" text="3.- ¿Pesa más de 50 Kg?.. ......................................................................................................................................................................... " />
+            <Label layoutX="5.0" layoutY="103.0" text="4.- ¿Es la primera vez que dona sangre?............................................................................................................................................." />
+            <Label layoutX="5.0" layoutY="125.0" prefHeight="17.0" prefWidth="595.0" text="5.- ¿Ha donado sangre o aféresis en los últimos 12 meses?...................................................................................................... " />
+            <Label layoutX="5.0" layoutY="148.0" text="6.- ¿ Ha sido rechazado alguna vez como donante? .................................................................................................................." />
+            <Label layoutX="5.0" layoutY="171.0" text="7.- ¿Convive en la actualidad o ha convivido en los últimos 4 meses con algún enfermo de SIDA o hepatitis?.." />
+            <Label layoutX="5.0" layoutY="194.0" text="8.- ¿Ha compartido en los últimos 4 meses maquinillas de afeitar o cepillos de dientes?.........................................." />
+            <Label layoutX="5.0" layoutY="217.0" text="9.- ¿Se ha vacunado en el último mes o le han puesto inmunoglobulinas en los últimos 12 meses?......................" />
+            <Label layoutX="5.0" layoutY="858.0" text="32.- ¿Ha entendido correctamente las preguntas formuladas en este cuestionario?....................................................." />
+            <Label layoutX="45.0" layoutY="217.0" />
+            <Label layoutX="5.0" layoutY="240.0" text="10.-¿Le han puesto la vacuna de la rabia en el último año? ..................................................................................................." />
+            <Label layoutX="5.0" layoutY="290.0" text="12.-¿Toma alguna medicación incluida aspirina, ibuprofeno o derivados en los últimos cinco días?.................. " />
+            <Label layoutX="5.0" layoutY="267.0" text="11.-¿Se ha realizado algún tratamiento dental en los últimos 7 días?............................................................................. " />
+            <Label layoutX="5.0" layoutY="316.0" text="13.-¿Ha tomado alguna vez: PROSCAR, PROPECIA, ROACUTAN, ISOTREX, TIGASON, AVODART, DUAGEN?....... " />
+            <Label layoutX="5.0" layoutY="365.0" text="15.-¿Ha sido hospitalizado, operado de algo o le han realizado una endoscopia  en los últimos cuatro meses? " />
+            <Label layoutX="5.0" layoutY="342.0" text="14.-¿Ha tenido fiebre (&gt;38º C), diarrea, o alguna otra infección en los últimos quince días?................................. " />
+            <Label layoutX="5.0" layoutY="392.0" text="16.-¿Ha sufrido alguna salpicadura con sangre o punción accidental con aguja en los últimos 4 meses? ............" />
+            <Label layoutX="5.0" layoutY="441.0" text="18.-Si es mujer ¿Ha estado embarazada en los últimos seis meses? ¿Está todavía amamantando al niño? ........" />
+            <Label layoutX="5.0" layoutY="418.0" text="17.-¿Se ha hecho algún tatuaje, piercing, agujero en oreja, acupuntura en los últimos 4 meses?............................. " />
+            <Label layoutX="5.0" layoutY="465.0" text="19.¿Ha tenido algún episodio alérgico importante en el último año ? ¿Sufre de asma?................................................" />
+            <Label layoutX="5.0" layoutY="514.0" text="21.-¿Ha tenido alguna enfermedad grave de cerebro, riñón, tiroides, pulmón, corazón" />
+            <Label layoutX="5.0" layoutY="491.0" text="20.-¿Ha padecido alguna enfermedad infecciosa grave?........................................................................................................ " />
+            <Label layoutX="5.0" layoutY="560.0" text="22.-¿Ha tenido convulsiones no febriles, desmayos o epilepsia?.......................................................................................... " />
+            <Label layoutX="5.0" layoutY="609.0" text="24.-¿Ha utilizado anabolizantes para aumentar la musculatura alguna vez en su vida?................................................. " />
+            <Label layoutX="5.0" layoutY="586.0" text="23.-¿Le han transfundido sangre en alguna ocasión? ¿Cuando? ¿En qué país?................................................................ " />
+            <Label layoutX="5.0" layoutY="532.0" text="(infarto, angina, arritmia), aparato digestivo, diabetes, cáncer, o problemas de coagulación?................................." />
+            <Label layoutX="5.0" layoutY="676.0" text="26.-¿Ha residido en el Reino Unido más de un año acumulativo entre los años 1980 a 1996 inclusive? ¿Tiene " />
+            <Label layoutX="5.0" layoutY="633.0" prefHeight="4.0" prefWidth="518.0" text="25.-¿Ha sido tratado con hormonas de crecimiento?, ¿tiene antecedentes de trasplante de cornea " />
+            <Label layoutX="5.0" layoutY="722.0" text="27.-¿Ha nacido Vd.,su madre o su abuela materna fuera de la UE? ¿Dónde? ¿Cuándo " />
+            <Label layoutX="5.0" layoutY="784.0" text="29.-¿Ha residido en algún momento de su vida 6 o más meses fuera de la UE? ¿Dónde?........................................... " />
+            <Label layoutX="5.0" layoutY="761.0" text="28.-¿Ha viajado fuera de la UE en los últimos 6 meses? ¿Dónde?........................................................................................" />
+            <Label layoutX="5.0" layoutY="694.0" text="antecedentes familiares de enfermedad de Creutzfeldt Jacob (enfermedad de las vacas locas)?......................." />
+            <Label layoutX="5.0" layoutY="833.0" text="31.- En el último año, ¿Le han hecho alguna prueba o reconocimiento médico?............................................................." />
+            <Label layoutX="5.0" layoutY="809.0" text="30.-¿Va a realizar en las siguientes doce horas tras la donación alguna actividad laboral de riesgo?....................." />
+            <Label layoutX="5.0" layoutY="649.0" text="o injerto de duramadre?......................................................................................................................................................................" />
+            <Label layoutX="5.0" layoutY="736.0" text="regresó de su último viaje a su país de origen? ............................................................................................................................." />
+            <Label layoutX="6.0" layoutY="886.0" prefHeight="17.0" prefWidth="500.0" text="Ex1: ¿Padece o ha padecido alguna vez una enfermedad de transmisión sexual o transmisible " />
+            <Label layoutX="7.0" layoutY="920.0" text="Ex2: ¿Ha mantenido una relación sexual con una nueva pareja en los últimos 4 meses sin protección?" />
+            <Label layoutX="5.0" layoutY="944.0" prefHeight="17.0" prefWidth="483.0" text="Ex3: ¿Ha consumido drogas ilegales alguna vez (heroína, cocaína, etc)?......................................" />
+            <Label layoutX="6.0" layoutY="903.0" prefHeight="17.0" prefWidth="500.0" text="por la sangre (SIDA, sífilis, gonorrea, clamidia)?................................................................................................." />
+            <ScrollBar layoutX="612.0" layoutY="35.0" orientation="VERTICAL" prefHeight="943.0" prefWidth="18.0" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

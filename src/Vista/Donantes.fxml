@@ -28,14 +28,14 @@
             <DatePicker fx:id="FechaNacimiento" layoutX="257.0" layoutY="166.0" prefHeight="26.0" prefWidth="100.0" />
             <Button fx:id="Insertar" layoutX="379.0" layoutY="46.0" mnemonicParsing="false" onAction="#InsertarDonante" prefHeight="32.0" prefWidth="73.0" text="Añadir" />
             <Button fx:id="Modificar" layoutX="379.0" layoutY="93.0" mnemonicParsing="false" onAction="#ModificarDonante" text="Modificar" />
-            <Button fx:id="Eliminar" layoutX="379.0" layoutY="176.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="73.0" text="Eliminar" />
+            <Button fx:id="Eliminar" layoutX="379.0" layoutY="176.0" mnemonicParsing="false" onAction="#EliminarDonante" prefHeight="32.0" prefWidth="73.0" text="Eliminar" />
             <Button fx:id="Imprimir" layoutX="379.0" layoutY="221.0" mnemonicParsing="false" onAction="#GenerarCarnet" prefHeight="32.0" prefWidth="73.0" text="Imprimir" />
             <Line endX="-35.0" endY="-192.0" layoutX="519.0" layoutY="192.0" startX="-35.0" startY="116.0" />
             <Line endX="524.0" endY="-139.0" layoutX="74.0" layoutY="179.0" startX="410.5" startY="-139.0" />
             <Label layoutX="498.0" layoutY="6.0" prefHeight="26.0" prefWidth="100.0" text="Búsqueda" />
             <TextField fx:id="BuscarNombre" layoutX="498.0" layoutY="62.0" prefHeight="26.0" prefWidth="86.0" text="Nombre" />
             <TextField fx:id="BuscarEmail" layoutX="498.0" layoutY="149.0" prefHeight="26.0" prefWidth="86.0" text="Email" />
-            <TextField fx:id="BuscarTelefono" layoutX="498.0" layoutY="120.0" prefHeight="26.0" prefWidth="86.0" text="Teléfono" />
+            <TextField fx:id="BuscarTelefono" layoutX="498.0" layoutY="120.0" prefHeight="26.0" prefWidth="86.0" text="Telefono" />
             <TextField fx:id="BuscarApellido" layoutX="498.0" layoutY="91.0" prefHeight="26.0" prefWidth="86.0" text="Apellido" />
             <TextField fx:id="BuscarID" layoutX="498.0" layoutY="179.0" prefHeight="26.0" prefWidth="92.0" text="Identificacion" />
             <TextField fx:id="BuscarCiclo" layoutX="498.0" layoutY="208.0" prefHeight="26.0" prefWidth="86.0" text="Ciclo" />
