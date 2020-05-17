@@ -702,12 +702,12 @@ public class ControladoraNuevaDonacion1 {
 		Conexion con = new Conexion();
 		String numdonante1 = NumDonante.getText();
 		int num_donante = Integer.parseInt(numdonante1);
-		String estadodonante = "";
-		if(respuestaEx1.equals("Si") || respuestaEx2.equals("Si") || respuestaEx3.equals("Si")){
+		String estadodonante = "n";
+		if(respuestaEx1.equals("S") || respuestaEx2.equals("S") || respuestaEx3.equals("S")){
 			estadodonante = "NO APTO";
 		}
 		else{
-			if(respuesta1.equals("No") || respuesta3.equals("No") || respuesta12.equals("Si") || respuesta14.equals("Si") || respuesta16.equals("Si") || respuesta17.equals("Si")){
+			if(respuesta1.equals("N") || respuesta3.equals("N") || respuesta12.equals("S") || respuesta14.equals("S") || respuesta16.equals("Si") || respuesta17.equals("S")){
 				estadodonante = "Temporal";
 			}else{
 				estadodonante = "APTO";
