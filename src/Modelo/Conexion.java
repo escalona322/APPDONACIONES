@@ -712,4 +712,175 @@ public int InsertRealiza(int numdonacion, int numdonante) throws SQLException{
 	
 }
 
+public ObservableList<DonacionBuscada> BuscarPorFecha(String Fecha) throws SQLException{
+
+	ObservableList<DonacionBuscada> ListaBusquedas = FXCollections.observableArrayList();
+
+	//Preparo la conexión para ejecutar sentencias SQL de tipo update
+	Statement stm = conexion.createStatement();
+
+	// Preparo la sentencia SQL CrearTablaPersonas
+	String selectsql = "SELECT UNIQUE DO.Num_donacion, D.NOMBRE, D.GRUPO_SANG, DO.FECHA FROM "+usr+"DONACION DO, "+usr+"DONANTE D, "+usr+"REALIZA R WHERE DO.FECHA=? AND D.N_DONANTE=R.N_DONANTE AND DO.NUM_DONACION=R.NUM_DONACION ";
+	
+	PreparedStatement pstmt = conexion.prepareStatement (selectsql);
+	pstmt.setString(1, Fecha);
+	//ejecuto la sentencia
+	try{
+		ResultSet resultado = stm.executeQuery(selectsql);
+
+		int contador = 0;
+		while(resultado.next()){
+			contador++;
+
+			String fecha= resultado.getString(1);
+			String nombre = resultado.getString(2);
+			String gsang = resultado.getString(3);
+			String tipo = resultado.getString(4);
+			
+			DonacionBuscada nueva = new DonacionBuscada(fecha, nombre, gsang, tipo);
+			ListaBusquedas.add(nueva);
+		}
+
+		if(contador==0)
+			System.out.println("no data found");
+
+	}catch(SQLException sqle){
+
+		int pos = sqle.getMessage().indexOf(":");
+		String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+		System.out.println(codeErrorSQL);
+	}
+
+	return ListaBusquedas;
+}
+
+public ObservableList<DonacionBuscada> BuscarPorTipo(String Tipo) throws SQLException{
+
+	ObservableList<DonacionBuscada> ListaBusquedas = FXCollections.observableArrayList();
+
+	//Preparo la conexión para ejecutar sentencias SQL de tipo update
+	Statement stm = conexion.createStatement();
+
+	// Preparo la sentencia SQL CrearTablaPersonas
+	String selectsql = "SELECT UNIQUE DO.Num_donacion, D.NOMBRE, D.GRUPO_SANG, DO.FECHA FROM DONACION DO, DONANTE D, REALIZA R WHERE DO.TIPO_DONACION=? AND D.N_DONANTE=R.N_DONANTE AND DO.NUM_DONACION=R.NUM_DONACION ";
+	
+	PreparedStatement pstmt = conexion.prepareStatement (selectsql);
+	pstmt.setString(1, Tipo);
+	//ejecuto la sentencia
+	try{
+		ResultSet resultado = stm.executeQuery(selectsql);
+
+		int contador = 0;
+		while(resultado.next()){
+			contador++;
+
+			String fecha= resultado.getString(1);
+			String nombre = resultado.getString(2);
+			String gsang = resultado.getString(3);
+			String tipo = resultado.getString(4);
+			
+			DonacionBuscada nueva = new DonacionBuscada(fecha, nombre, gsang, tipo);
+			ListaBusquedas.add(nueva);
+		}
+
+		if(contador==0)
+			System.out.println("no data found");
+
+	}catch(SQLException sqle){
+
+		int pos = sqle.getMessage().indexOf(":");
+		String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+		System.out.println(codeErrorSQL);
+	}
+
+	return ListaBusquedas;
+}
+
+public ObservableList<DonacionBuscada> BuscarPorNombre(String Nombre) throws SQLException{
+
+	ObservableList<DonacionBuscada> ListaBusquedas = FXCollections.observableArrayList();
+
+	//Preparo la conexión para ejecutar sentencias SQL de tipo update
+	Statement stm = conexion.createStatement();
+
+	// Preparo la sentencia SQL CrearTablaPersonas
+	String selectsql = "SELECT UNIQUE DO.Num_donacion, D.NOMBRE, D.GRUPO_SANG, DO.FECHA FROM "+usr+"DONACION DO, "+usr+"DONANTE D, "+usr+"REALIZA R WHERE D.NOMBRE=? AND D.N_DONANTE=R.N_DONANTE AND DO.NUM_DONACION=R.NUM_DONACION ";
+	
+	PreparedStatement pstmt = conexion.prepareStatement (selectsql);
+	pstmt.setString(1, Nombre);
+	//ejecuto la sentencia
+	try{
+		ResultSet resultado = stm.executeQuery(selectsql);
+
+		int contador = 0;
+		while(resultado.next()){
+			contador++;
+
+			String tipo= resultado.getString(4);
+			String nombre = resultado.getString(2);
+			String gsang = resultado.getString(3);
+			String fecha = resultado.getString(1);
+			
+			DonacionBuscada nueva = new DonacionBuscada(fecha, nombre, gsang, tipo);
+			ListaBusquedas.add(nueva);
+		}
+
+		if(contador==0)
+			System.out.println("no data found");
+
+	}catch(SQLException sqle){
+
+		int pos = sqle.getMessage().indexOf(":");
+		String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+		System.out.println(codeErrorSQL);
+	}
+
+	return ListaBusquedas;
+}
+
+public ObservableList<DonacionBuscada> BuscarPorGSang(String Gsang) throws SQLException{
+
+	ObservableList<DonacionBuscada> ListaBusquedas = FXCollections.observableArrayList();
+
+	//Preparo la conexión para ejecutar sentencias SQL de tipo update
+	Statement stm = conexion.createStatement();
+
+	// Preparo la sentencia SQL CrearTablaPersonas
+	String selectsql = "SELECT UNIQUE DO.Num_donacion, D.NOMBRE, D.GRUPO_SANG, DO.FECHA FROM "+usr+"DONACION DO, "+usr+"DONANTE D, "+usr+"REALIZA R WHERE D.Grupo_Sang=? AND D.N_DONANTE=R.N_DONANTE AND DO.NUM_DONACION=R.NUM_DONACION ";
+	
+	PreparedStatement pstmt = conexion.prepareStatement (selectsql);
+	pstmt.setString(1, Gsang);
+	//ejecuto la sentencia
+	try{
+		ResultSet resultado = stm.executeQuery(selectsql);
+
+		int contador = 0;
+		while(resultado.next()){
+			contador++;
+
+			String fecha= resultado.getString(1);
+			String nombre = resultado.getString(2);
+			String gsang = resultado.getString(3);
+			String tipo = resultado.getString(4);
+			
+			DonacionBuscada nueva = new DonacionBuscada(fecha, nombre, gsang, tipo);
+			ListaBusquedas.add(nueva);
+		}
+
+		if(contador==0)
+			System.out.println("no data found");
+
+	}catch(SQLException sqle){
+
+		int pos = sqle.getMessage().indexOf(":");
+		String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+		System.out.println(codeErrorSQL);
+	}
+
+	return ListaBusquedas;
+}
 }

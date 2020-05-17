@@ -34,7 +34,6 @@
             <Label layoutX="544.0" layoutY="115.0" text="Por tipo" />
             <DatePicker fx:id="Fecha" layoutX="97.0" layoutY="169.0" prefHeight="24.0" prefWidth="102.0" />
             <TextField fx:id="Nombre" layoutX="235.0" layoutY="170.0" prefHeight="24.0" prefWidth="114.0" />
-            <TextField fx:id="GSang" layoutX="380.0" layoutY="170.0" prefHeight="24.0" prefWidth="114.0" />
             <RadioButton fx:id="Aferesis" layoutX="534.0" layoutY="152.0" mnemonicParsing="false" text="Aféresis">
                <toggleGroup>
                   <ToggleGroup fx:id="Tipo" />
@@ -44,6 +43,14 @@
             <Button fx:id="BuscarNombre" layoutX="266.0" layoutY="206.0" mnemonicParsing="false" onAction="#BuscarPorNombre" text="Buscar" />
             <Button fx:id="BuscarGSang" layoutX="411.0" layoutY="206.0" mnemonicParsing="false" onAction="#BuscarPorGSang" text="Buscar" />
             <Button fx:id="BuscarTipo" layoutX="540.0" layoutY="206.0" mnemonicParsing="false" onAction="#BuscarPorTipo" text="Buscar" />
+            <RadioButton fx:id="RBA" layoutX="387.0" layoutY="152.0" mnemonicParsing="false" text="A">
+               <toggleGroup>
+                  <ToggleGroup fx:id="RBGsang" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="RBB" layoutX="388.0" layoutY="186.0" mnemonicParsing="false" text="B" toggleGroup="$RBGsang" />
+            <RadioButton fx:id="RBA2" layoutX="448.0" layoutY="152.0" mnemonicParsing="false" text="AB" toggleGroup="$RBGsang" />
+            <RadioButton fx:id="Cero" layoutX="448.0" layoutY="187.0" mnemonicParsing="false" text="0" toggleGroup="$RBGsang" />
          </children>
       </AnchorPane>
    </children>
