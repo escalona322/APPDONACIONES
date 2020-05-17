@@ -13,16 +13,16 @@
 
 <AnchorPane prefHeight="430.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Vista.ControladoraNuevaDonacion2">
    <children>
-      <AnchorPane layoutX="-20.0" layoutY="-24.0" prefHeight="496.0" prefWidth="628.0">
+      <AnchorPane layoutY="-12.0" prefHeight="496.0" prefWidth="628.0">
          <children>
-            <TextField fx:id="TensionD" layoutX="73.0" layoutY="132.0" text="Tension diástolica" />
+            <TextField fx:id="TensionD" layoutX="89.0" layoutY="104.0" text="Tension diástolica" />
             <Line endX="507.0" layoutX="121.0" layoutY="93.0" startX="-100.0" />
             <Label layoutX="269.0" layoutY="42.0" prefHeight="34.0" prefWidth="92.0" text="Nueva Donacion" />
-            <TextField fx:id="TensionS" layoutX="73.0" layoutY="183.0" text="Tensión sistolica" />
-            <TextField fx:id="Pulso" layoutX="73.0" layoutY="236.0" text="Pulso" />
-            <TextField fx:id="HBVen" layoutX="269.0" layoutY="132.0" text="HB Venosa" />
-            <TextField fx:id="HBCap" layoutX="269.0" layoutY="183.0" text="HB Capilar" />
-            <DatePicker fx:id="FechaDonacion" layoutX="263.0" layoutY="236.0" prefHeight="25.0" prefWidth="149.0" />
+            <TextField fx:id="TensionS" layoutX="89.0" layoutY="145.0" text="Tensión sistolica" />
+            <TextField fx:id="Pulso" layoutX="89.0" layoutY="183.0" text="Pulso" />
+            <TextField fx:id="HBVen" layoutX="269.0" layoutY="104.0" text="HB Venosa" />
+            <TextField fx:id="HBCap" layoutX="269.0" layoutY="145.0" text="HB Capilar" />
+            <DatePicker fx:id="FechaDonacion" layoutX="83.0" layoutY="230.0" prefHeight="25.0" prefWidth="149.0" />
             <RadioButton fx:id="Aferesis" layoutX="463.0" layoutY="149.0" mnemonicParsing="false" text="Aféresis">
                <toggleGroup>
                   <ToggleGroup fx:id="Tipo" />
@@ -36,9 +36,12 @@
                   <TableColumn fx:id="PulsoT" prefWidth="155.0" text="Pulso" />
               </columns>
             </TableView>
-            <Button layoutX="545.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Añadir" />
-            <Button layoutX="545.0" layoutY="179.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Borrar" />
-            <Button layoutX="545.0" layoutY="232.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Eliminar" />
+            <Button fx:id="InsertarDonacion" layoutX="545.0" layoutY="99.0" mnemonicParsing="false" onAction="#Insertar" prefHeight="34.0" prefWidth="72.0" text="Añadir" />
+            <Button fx:id="Borrar" layoutX="545.0" layoutY="140.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="34.0" prefWidth="72.0" text="Borrar" />
+            <Button fx:id="Eliminar" layoutX="545.0" layoutY="187.0" mnemonicParsing="false" onAction="#Eliminar" prefHeight="34.0" prefWidth="72.0" text="Eliminar" />
+            <TextField fx:id="Pulso" layoutX="262.0" layoutY="183.0" prefHeight="1.0" prefWidth="82.0" text="Pulso" />
+            <TextField fx:id="Numdonante" layoutX="393.0" layoutY="245.0" prefHeight="17.0" prefWidth="124.0" text="Numero de donante" />
+            <Button fx:id="Relacionar" layoutX="529.0" layoutY="237.0" mnemonicParsing="false" onAction="#Relacionar" prefHeight="41.0" prefWidth="92.0" text="Relacionar" />
          </children>
       </AnchorPane>
    </children>

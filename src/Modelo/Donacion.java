@@ -8,9 +8,10 @@ public class Donacion {
 	private String Ta_Sist;
 	private String HB_Cap;
 	private String HB_VEN;
-	private Number Volumen;
+	private String GrupoSang;
+	private int Volumen;
 	public Donacion(int numdonacion, String fecha, String tipoDonacion, String pulso, String ta_Sist, String hB_Cap,
-			String hB_VEN, Number volumen) {
+			String hB_VEN, String grupoSang, int volumen) {
 		super();
 		Numdonacion = numdonacion;
 		Fecha = fecha;
@@ -20,6 +21,7 @@ public class Donacion {
 		HB_Cap = hB_Cap;
 		HB_VEN = hB_VEN;
 		Volumen = volumen;
+		GrupoSang = grupoSang;
 	}
 	public int getNumdonacion() {
 		return Numdonacion;
@@ -66,7 +68,7 @@ public class Donacion {
 	public Number getVolumen() {
 		return Volumen;
 	}
-	public void setVolumen(Number volumen) {
+	public void setVolumen(int volumen) {
 		Volumen = volumen;
 	}
 	

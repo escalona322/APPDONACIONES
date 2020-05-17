@@ -16,7 +16,7 @@
             <Label layoutX="177.0" layoutY="29.0" prefHeight="31.0" prefWidth="115.0" text="Nueva Donación" />
             <Label layoutX="20.0" layoutY="86.0" prefHeight="31.0" prefWidth="101.0" text="Numero Donante:" />
             <TextField fx:id="NumDonante" layoutX="120.0" layoutY="86.0" prefHeight="31.0" prefWidth="115.0" />
-            <Button fx:id="ConfirmarFormulario" layoutX="164.0" layoutY="369.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="144.0" text="Confirmar Formulario" />
+            <Button fx:id="ConfirmarFormulario" layoutX="164.0" layoutY="369.0" mnemonicParsing="false" onAction="#Confirmar" prefHeight="38.0" prefWidth="144.0" text="Confirmar Formulario" />
             <Button fx:id="SiguienteVentana" layoutX="199.0" layoutY="412.0" mnemonicParsing="false" onAction="#SiguienteVentana" prefHeight="49.0" prefWidth="71.0" text="Siguiente" />
             <Label layoutX="47.0" layoutY="144.0" text="1:" />
             <Label layoutX="47.0" layoutY="169.0" text="2:" />

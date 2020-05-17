@@ -12,6 +12,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import Modelo.Conexion;
 import Modelo.Formulario;
 
@@ -336,521 +343,423 @@ public class ControladoraNuevaDonacion1 {
 	@FXML
 	private Button SiguienteVentana;
 	
-	public void Confirmar(){
+	public void Confirmar() throws SQLException{
 		
 		String respuesta1 = "";
 		if(P1Si.isSelected()==true){
-			respuesta1 = "Si";
+			respuesta1 = "S";
 		}else{
 			if(P1No.isSelected()==true){
-				respuesta1 = "No";
+				respuesta1 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 1");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta2 = "";
 		if(P2Si.isSelected()==true){
-			respuesta2= "Si";
+			respuesta2= "S";
 		}else{
 			if(P2No.isSelected()==true){
-				respuesta2 = "No";
+				respuesta2 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 2");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta3 = "";
 		if(P3Si.isSelected()==true){
-			respuesta3 = "Si";
+			respuesta3 = "S";
 		}else{
 			if(P3No.isSelected()==true){
-				respuesta3 = "No";
+				respuesta3 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 3");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta4 = "";
 		if(P4Si.isSelected()==true){
-			respuesta4 = "Si";
+			respuesta4 = "S";
 		}else{
 			if(P4No.isSelected()==true){
-				respuesta4 = "No";
+				respuesta4 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 4");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta5 = "";
 		if(P1Si.isSelected()==true){
-			respuesta5 = "Si";
+			respuesta5 = "S";
 		}else{
 			if(P5No.isSelected()==true){
-				respuesta5 = "No";
+				respuesta5 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 5");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta6 = "";
 		if(P6Si.isSelected()==true){
-			respuesta6 = "Si";
+			respuesta6 = "S";
 		}else{
 			if(P6No.isSelected()==true){
-				respuesta6 = "No";
+				respuesta6 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 6");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta7 = "";
 		if(P7Si.isSelected()==true){
-			respuesta7 = "Si";
+			respuesta7 = "S";
 		}else{
 			if(P7No.isSelected()==true){
-				respuesta7 = "No";
+				respuesta7 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 7");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta8 = "";
 		if(P8Si.isSelected()==true){
-			respuesta8 = "Si";
+			respuesta8 = "S";
 		}else{
 			if(P8No.isSelected()==true){
-				respuesta8 = "No";
+				respuesta8 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 8");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta9 = "";
 		if(P9Si.isSelected()==true){
-			respuesta9 = "Si";
+			respuesta9 = "S";
 		}else{
 			if(P9No.isSelected()==true){
-				respuesta9 = "No";
+				respuesta9 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 9");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta10 = "";
 		if(P10Si.isSelected()==true){
-			respuesta10 = "Si";
+			respuesta10 = "S";
 		}else{
 			if(P10No.isSelected()==true){
-				respuesta10 = "No";
+				respuesta10 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 10");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta11 = "";
 		if(P11Si.isSelected()==true){
-			respuesta11 = "Si";
+			respuesta11 = "S";
 		}else{
 			if(P11No.isSelected()==true){
-				respuesta11 = "No";
+				respuesta11 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 11");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta12 = "";
 		if(P12Si.isSelected()==true){
-			respuesta12 = "Si";
+			respuesta12 = "S";
 		}else{
 			if(P12No.isSelected()==true){
-				respuesta12 = "No";
+				respuesta12 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 12");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta13 = "";
 		if(P13Si.isSelected()==true){
-			respuesta13 = "Si";
+			respuesta13 = "S";
 		}else{
 			if(P13No.isSelected()==true){
-				respuesta13 = "No";
+				respuesta13 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 13");
-				alert.showAndWait();
-			}
+		}
 		}
 		
 		String respuesta14 = "";
 		if(P14Si.isSelected()==true){
-			respuesta14 = "Si";
+			respuesta14 = "S";
 		}else{
 			if(P14No.isSelected()==true){
-				respuesta14 = "No";
+				respuesta14 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 14");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta15 = "";
 		if(P15Si.isSelected()==true){
-			respuesta15 = "Si";
+			respuesta15 = "S";
 		}else{
 			if(P15No.isSelected()==true){
-				respuesta15 = "No";
+				respuesta15 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 15");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta16 = "";
 		if(P16Si.isSelected()==true){
-			respuesta16 = "Si";
+			respuesta16 = "S";
 		}else{
 			if(P16No.isSelected()==true){
-				respuesta16 = "No";
+				respuesta16 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 16");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta17 = "";
 		if(P17Si.isSelected()==true){
-			respuesta17 = "Si";
+			respuesta17 = "S";
 		}else{
 			if(P17No.isSelected()==true){
-				respuesta17 = "No";
+				respuesta17 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 17");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta18 = "";
 		if(P18Si.isSelected()==true){
-			respuesta18 = "Si";
+			respuesta18 = "S";
 		}else{
 			if(P18No.isSelected()==true){
-				respuesta18 = "No";
+				respuesta18 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 18");
-				alert.showAndWait();
-			}
+				}
 		}
 		
 		String respuesta19 = "";
 		if(P19Si.isSelected()==true){
-			respuesta19 = "Si";
+			respuesta19 = "S";
 		}else{
 			if(P19No.isSelected()==true){
-				respuesta19 = "No";
+				respuesta19 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 19");
-				alert.showAndWait();
-			}
+				}
 		}
 		
 		String respuesta20 = "";
 		if(P20Si.isSelected()==true){
-			respuesta20 = "Si";
+			respuesta20 = "S";
 		}else{
 			if(P20No.isSelected()==true){
-				respuesta20 = "No";
+				respuesta20 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 20");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta21 = "";
 		if(P21Si.isSelected()==true){
-			respuesta21 = "Si";
+			respuesta21 = "S";
 		}else{
 			if(P21No.isSelected()==true){
-				respuesta21 = "No";
+				respuesta21 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 21");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta22 = "";
 		if(P22Si.isSelected()==true){
-			respuesta22 = "Si";
+			respuesta22 = "S";
 		}else{
 			if(P22No.isSelected()==true){
-				respuesta22 = "No";
+				respuesta22 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 22");
-				alert.showAndWait();
-			}
+				}
 		}
 		
 		String respuesta23 = "";
 		if(P23Si.isSelected()==true){
-			respuesta23 = "Si";
+			respuesta23 = "S";
 		}else{
 			if(P23No.isSelected()==true){
-				respuesta23 = "No";
+				respuesta23 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 23");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta24 = "";
 		if(P24Si.isSelected()==true){
-			respuesta24 = "Si";
+			respuesta24 = "S";
 		}else{
 			if(P24No.isSelected()==true){
-				respuesta24 = "No";
+				respuesta24 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 24");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta25 = "";
 		if(P25Si.isSelected()==true){
-			respuesta25 = "Si";
+			respuesta25 = "S";
 		}else{
 			if(P25No.isSelected()==true){
-				respuesta25 = "No";
+				respuesta25 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 25");
-				alert.showAndWait();
-			}
+				}
 		}
 		
 		String respuesta26 = "";
 		if(P26Si.isSelected()==true){
-			respuesta26 = "Si";
+			respuesta26 = "S";
 		}else{
 			if(P26No.isSelected()==true){
-				respuesta26 = "No";
-			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 26");
-				alert.showAndWait();
-			}
+				respuesta26 = "N";
+			}else{}
 		}
 		
 		String respuesta27 = "";
 		if(P27Si.isSelected()==true){
-			respuesta27 = "Si";
+			respuesta27 = "S";
 		}else{
 			if(P27No.isSelected()==true){
-				respuesta27 = "No";
+				respuesta27 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 27");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta28 = "";
 		if(P28Si.isSelected()==true){
-			respuesta28 = "Si";
+			respuesta28 = "S";
 		}else{
 			if(P28No.isSelected()==true){
-				respuesta28 = "No";
+				respuesta28 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 28");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta29 = "";
 		if(P29Si.isSelected()==true){
-			respuesta29 = "Si";
+			respuesta29 = "S";
 		}else{
 			if(P29No.isSelected()==true){
-				respuesta29 = "No";
+				respuesta29 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 29");
-				alert.showAndWait();
 			}
 		}
 		
 		String respuesta30= "";
 		if(P30Si.isSelected()==true){
-			respuesta30 = "Si";
+			respuesta30 = "S";
 		}else{
 			if(P30No.isSelected()==true){
-				respuesta30 = "No";
+				respuesta30 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 30");
-				alert.showAndWait();
-			}
+				}
 		}
 		
 		String respuesta31 = "";
 		if(P31Si.isSelected()==true){
-			respuesta31 = "Si";
+			respuesta31 = "S";
 		}else{
 			if(P31No.isSelected()==true){
-				respuesta31 = "No";
+				respuesta31 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta 31");
-				alert.showAndWait();
-			}
+				}
 		}
 		
 		String respuestaEx1 = "";
 		if(PEx1Si.isSelected()==true){
-			respuestaEx1 = "Si";
+			respuestaEx1 = "S";
 		}else{
-			if(P1No.isSelected()==true){
-				respuestaEx1 = "No";
+			if(PEx1No.isSelected()==true){
+				respuestaEx1 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta excluyente 1");
-				alert.showAndWait();
-			}
+				}
 		}
 		
 		String respuestaEx2 = "";
 		if(PEx2Si.isSelected()==true){
-			respuestaEx2 = "Si";
+			respuestaEx2 = "S";
 		}else{
 			if(PEx2No.isSelected()==true){
-				respuestaEx2 = "No";
+				respuestaEx2 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta excluyente 2");
-				alert.showAndWait();
+				
 			}
 		}
 		
 		String respuestaEx3 = "";
 		if(PEx3Si.isSelected()==true){
-			respuestaEx3 = "Si";
+			respuestaEx3 = "S";
 		}else{
 			if(PEx3No.isSelected()==true){
-				respuestaEx3 = "No";
+				respuestaEx3 = "N";
 			}else{
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error!");
-				alert.setHeaderText("Asegurate de responder a todas las preguntas");
-				alert.setContentText("No has respondido la pregunta excluyente 3");
-				alert.showAndWait();
+				
 			}
+		}
+		Date date = new Date();
+		Calendar fecha = new GregorianCalendar();
+		fecha.setTime(date);
+		int mes = fecha.get(Calendar.MONTH);
+		int año = fecha.get(Calendar.YEAR);
+		int dia = fecha.get(Calendar.DATE);
+		String fechastring = "";
+		if(mes>=10){
+		fechastring = mes+"-"+dia+"-"+año;
+		}else{
+			 fechastring = "0"+mes+"-"+dia+"-"+año;
+
 		}
 		
 		Conexion con = new Conexion();
+		String numdonante1 = NumDonante.getText();
+		int num_donante = Integer.parseInt(numdonante1);
+		String estadodonante = "";
+		if(respuestaEx1.equals("Si") || respuestaEx2.equals("Si") || respuestaEx3.equals("Si")){
+			estadodonante = "NO APTO";
+		}
+		else{
+			if(respuesta1.equals("No") || respuesta3.equals("No") || respuesta12.equals("Si") || respuesta14.equals("Si") || respuesta16.equals("Si") || respuesta17.equals("Si")){
+				estadodonante = "Temporal";
+			}else{
+				estadodonante = "APTO";
+			}
+		}
+		if(estadodonante.equals("Temporal")){
+			
+			int mes1 = fecha.get(Calendar.MONTH)+2;
+			int año1 = fecha.get(Calendar.YEAR);
+			int dia1 = fecha.get(Calendar.DATE);
+			if(mes1>12){
+				mes1 = mes1 - 12;
+				año1 = año1+1;
+			}else{
+				if(mes1>=10){
+					estadodonante = mes1+"-"+dia1+"-"+año1;
+				}else{
+					estadodonante = "0"+mes1+"-"+dia1+"-"+año1;
+				}
+			}		
+		}
+		int actudonante = con.ActualizarEstadoDonante(estadodonante, num_donante);
+		int res = con.InsertarFormulario(num_donante, respuesta1, respuesta2, respuesta3, respuesta4, respuesta5, respuesta6, respuesta7, respuesta8, respuesta9, respuesta10, respuesta11, respuesta12, respuesta13, respuesta14, respuesta15, respuesta16, respuesta17, respuesta18, respuesta19, respuesta20, respuesta21, respuesta22, respuesta23, respuesta24, respuesta25, respuesta26, respuesta27, respuesta28, respuesta29, respuesta30, respuesta31, respuestaEx1, respuestaEx2, respuestaEx3);
+		Alert alert = new Alert(AlertType.INFORMATION);
+		switch (actudonante){
+		case 0:
+			alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Mensaje!");
+			alert.setHeaderText("Actualizacion OK!");
+			alert.setContentText("¡Estado de donante actualizado correctamente!");
+			break;
+		}
 		
-		int res = con.InsertarFormulario(respuesta1, respuesta2, respuesta3, respuesta4, respuesta5, respuesta6, respuesta7, respuesta8, respuesta9, respuesta10, respuesta11, respuesta12, respuesta13, respuesta14, respuesta15, respuesta16, respuesta17, respuesta18, respuesta19, respuesta20, respuesta21, respuesta22, respuesta23, respuesta24, respuesta25, respuesta26, respuesta27, respuesta28, respuesta29, respuesta30, respuesta31, respuestaEx1, respuestaEx2, respuestaEx3);
+		switch (res){
+
+		case 0:
+			alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Mensaje!");
+			alert.setHeaderText("Inserción OK!");
+			alert.setContentText("¡Insercion del formulario realizada correctamente!");
+			// Actualizo los datos de la tabla
+			break;
+
+		default:
+		
+			alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("Inserción NOK!");
+			alert.setContentText("¡Ha habido un problema al realizar la inserción!");
+		}
+			
+	
 	}
 	
 	public void AbrirPreguntas(){
@@ -874,10 +783,17 @@ public class ControladoraNuevaDonacion1 {
 		}
 	}
 	
-	public void SiguienteVentana(){
+	public void SiguienteVentana() throws SQLException{
+		Conexion con = new Conexion();
+		int numdonante = Integer.parseInt(NumDonante.getText());
+		Alert alert = new Alert(AlertType.INFORMATION);
+		String estado = "";
+		 estado = con.ComprobarEstadoDonante(numdonante);
+		 con.InsertarRellena(con.ContarFormularios(), numdonante); 
+		if(estado.equals("APTO")){
 		try{
 			 
-			 
+ 
 			FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("NuevaDonacion2.fxml"));
 			Parent root1= (Parent)fxmlLoader.load();
 			 
@@ -893,5 +809,18 @@ public class ControladoraNuevaDonacion1 {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}else{
+		if(estado.equals("NO APTO")){
+			
+			System.out.println("Este donante es alguien no apto para realizar una donacion");
+		}else{
+			if(estado.equals("n")){
+				System.out.println("Este donante no ha rellenado nunca el formulario");
+			}else{
+				
+				System.out.println("Este donante no puede donar todavia, vuelva cuando se le levante la restriccion: "+con.ComprobarEstadoDonante(numdonante));
+			}
+		}
+	}
 	}
 }

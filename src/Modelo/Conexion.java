@@ -5,8 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Properties;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -79,7 +81,7 @@ public class Conexion {
 		}
 		int SiguienteNumDonante = numaux+1;
 		String insertsql = "INSERT INTO "+usr+".DONANTE VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+		Estado = "n";
 		PreparedStatement pstmt = conexion.prepareStatement (insertsql);
 		pstmt.setInt(1, SiguienteNumDonante);
 		pstmt.setString(2, Cod_Postal);
@@ -170,6 +172,70 @@ public class Conexion {
 
 		}
 
+	}
+	
+	public int ActualizarEstadoDonante(String estado, int numdonante) throws SQLException{
+
+
+		String updatesql = "UPDATE "+usr+".DONANTE SET ESTADO=? where N_DONANTE=?";
+
+		PreparedStatement pstmt = conexion.prepareStatement (updatesql);
+		pstmt.setString(1, estado);
+		pstmt.setInt(2, numdonante);
+
+		//ejecuto la sentencia
+		try{
+			int resultado = pstmt.executeUpdate();
+
+			if(resultado != 1)
+				System.out.println("Error en la actualización " + resultado);
+			else
+				System.out.println("Donante actualizada con éxito!!!");
+
+			return 0;
+		}catch(SQLException sqle){
+
+			int pos = sqle.getMessage().indexOf(":");
+			String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+				System.out.println(sqle.toString());
+				System.out.println("Ha habido algún problema con Oracle al hacer la insercion2");
+				return 2;
+			
+
+		}
+
+	}
+	
+	public int InsertarRellena(int codigoform, int numdonante) throws SQLException{
+
+		String updatesql = "INSERT INTO "+usr+".RELLENA VALUES (?, ?)";
+
+		PreparedStatement pstmt = conexion.prepareStatement (updatesql);
+		pstmt.setInt(1, codigoform);
+		pstmt.setInt(2, numdonante);
+
+		//ejecuto la sentencia
+		try{
+			int resultado = pstmt.executeUpdate();
+
+			if(resultado != 1)
+				System.out.println("Error en la actualización " + resultado);
+			else
+				System.out.println("Insert de rellena realizado correctamente!!!");
+
+			return 0;
+		}catch(SQLException sqle){
+
+			int pos = sqle.getMessage().indexOf(":");
+			String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+				System.out.println(sqle.toString());
+				System.out.println("Ha habido algún problema con Oracle al hacer la insercion");
+				return 2;
+			
+
+		}
 	}
 	
 	public ObservableList<Donante> ObtenerDonantes() throws SQLException{
@@ -368,19 +434,282 @@ public class Conexion {
 		return listadonantes;
 	}
 	
-	public int InsertarFormulario(String respuesta1, String respuesta2, String respuesta3, String respuesta4, String respuesta5,
+	public int ContarFormularios() throws SQLException{
+		String MaxCodForm= "SELECT CODIGO_FORM FROM "+usr+".FORMULARIO where CODIGO_FORM = (Select max(CODIGO_FORM) FROM "+usr+".FORMULARIO)";
+		Statement stm = conexion.createStatement();
+		ResultSet cuenta = stm.executeQuery(MaxCodForm);
+		int numaux = 0;
+		while(cuenta.next()){
+			int numdonantes = cuenta.getInt(1);
+			numaux = numdonantes;
+		}
+		int SiguienteNumFormulario = numaux;
+		
+		return SiguienteNumFormulario;
+	}
+	
+	public String ComprobarEstadoDonante(int numdonante) throws SQLException{
+		String estadodonante = "SELECT ESTADO FROM "+usr+".DONANTE WHERE N_DONANTE=?";
+	
+			Statement stm = conexion.createStatement();
+			PreparedStatement pstmt = conexion.prepareStatement (estadodonante);
+			pstmt.setInt(1, numdonante);
+			String estado = "";
+			
+			try{
+				ResultSet resultado = pstmt.executeQuery();
+
+				int contador = 0;
+				while(resultado.next()){
+					contador++;
+
+
+					estado= resultado.getString(1);
+					
+
+				
+				}
+
+				if(contador==0)
+					System.out.println("no data found");
+
+			}catch(SQLException sqle){
+
+				int pos = sqle.getMessage().indexOf(":");
+				String codeErrorSQL = sqle.getMessage();
+
+				System.out.println(codeErrorSQL);
+			}
+			
+		return estado;
+		
+	}
+	
+	public int InsertarFormulario(int CodigoDonante, String respuesta1, String respuesta2, String respuesta3, String respuesta4, String respuesta5,
 			String respuesta6, String respuesta7, String respuesta8, String respuesta9, String respuesta10, String respuesta11,
 			String respuesta12, String respuesta13, String respuesta14, String respuesta15, String respuesta16, String respuesta17,
 			String respuesta18, String respuesta19, String respuesta20, String respuesta21, String respuesta22, String respuesta23,
 			String respuesta24, String respuesta25, String respuesta26, String respuesta27, String respuesta28, String respuesta29,
-			String respuesta30, String respuesta31, String respuestaEx1, String respuestaEx2, String respuestaEx3){
-		
-		return 0;
-		return 1;
-		return 2;
-	}
+			String respuesta30, String respuesta31, String respuestaEx1, String respuestaEx2, String respuestaEx3) throws SQLException{
+		//Cuento los donantes para que NumDonantese pueda introducir automaticamente
+				String MaxCodForm= "SELECT CODIGO_FORM FROM "+usr+".FORMULARIO where CODIGO_FORM = (Select max(CODIGO_FORM) FROM "+usr+".FORMULARIO)";
+				Statement stm = conexion.createStatement();
+				ResultSet cuenta = stm.executeQuery(MaxCodForm);
+				int numaux = 0;
+				while(cuenta.next()){
+					int numdonantes = cuenta.getInt(1);
+					numaux = numdonantes;
+				}
+				int SiguienteNumFormulario = numaux+1;
+				
+				
+				String InsertarFormulario = "INSERT INTO "+usr+".FORMULARIO VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				
+				PreparedStatement pstmt = conexion.prepareStatement (InsertarFormulario);
+				pstmt.setInt(1, SiguienteNumFormulario);
+				pstmt.setString(2, respuesta1);
+				pstmt.setString(3, respuesta2);
+				pstmt.setString(4, respuesta3);
+				pstmt.setString(5, respuesta4);
+				pstmt.setString(6, respuesta5);
+				pstmt.setString(7, respuesta6);
+				pstmt.setString(8, respuesta7);
+				pstmt.setString(9, respuesta8);
+				pstmt.setString(10, respuesta9);
+				pstmt.setString(11, respuesta10);
+				pstmt.setString(12, respuesta11);
+				pstmt.setString(13, respuesta12);
+				pstmt.setString(14, respuesta13);
+				pstmt.setString(15, respuesta14);
+				pstmt.setString(16, respuesta15);
+				pstmt.setString(17, respuesta16);
+				pstmt.setString(18, respuesta17);
+				pstmt.setString(19, respuesta18);
+				pstmt.setString(20, respuesta19);
+				pstmt.setString(21, respuesta20);
+				pstmt.setString(22, respuesta21);
+				pstmt.setString(23, respuesta22);
+				pstmt.setString(24, respuesta23);
+				pstmt.setString(25, respuesta24);
+				pstmt.setString(26, respuesta25);
+				pstmt.setString(27, respuesta26);
+				pstmt.setString(28, respuesta27);
+				pstmt.setString(29, respuesta28);
+				pstmt.setString(30, respuesta29);
+				pstmt.setString(31, respuesta30);
+				pstmt.setString(32, respuesta31);
+				pstmt.setString(33, respuestaEx1);
+				pstmt.setString(34, respuestaEx2);
+				pstmt.setString(35, respuestaEx3);
+	
+		try{
+			int resultado = pstmt.executeUpdate();
+
+			if(resultado != 1)
+				System.out.println("Error en la inserción " + resultado);
+			else
+				System.out.println("Formulario insertado con éxito!!!");
+
+			return 0;
+		}catch(SQLException sqle){
+
+			int pos = sqle.getMessage().indexOf(":");
+			String codeErrorSQL = sqle.getMessage().substring(0,pos);
+				System.out.println("Ha habido algún problema con  Oracle al hacer la insercion" + codeErrorSQL);
+				return 2;
+			}
+
+		}
+	
 	
 		
+public int InsertarDonacion(String Fecha, String Tipo, String Pulso, String TA_SIST, String TA_DIAS, String HB_CAP, String HB_Ven, int Volumen) throws SQLException{
+	//Cuento los donantes para que NumDonantese pueda introducir automaticamente
+			String MaxCodDonacion= "SELECT NUM_DONACION FROM "+usr+".DONACION where NUM_DONACION = (Select max(NUM_DONACION) FROM "+usr+".DONACION)";
+			Statement stm = conexion.createStatement();
+			ResultSet cuenta = stm.executeQuery(MaxCodDonacion);
+			int numaux = 0;
+			while(cuenta.next()){
+				int numdonaciones = cuenta.getInt(1);
+				numaux = numdonaciones;
+			}
+			int SiguienteNumDonacion = numaux+1;
+			
+			
+			String InsertarDonacion = "INSERT INTO "+usr+".DONACION VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			
+			PreparedStatement pstmt = conexion.prepareStatement (InsertarDonacion);
+			pstmt.setInt(1, SiguienteNumDonacion);
+			pstmt.setString(2, Fecha);
+			pstmt.setString(3, Tipo);
+			pstmt.setString(4, Pulso);
+			pstmt.setString(5, TA_SIST);
+			pstmt.setString(6, TA_DIAS);
+			pstmt.setString(7, HB_CAP);
+			pstmt.setString(8, HB_Ven);
+			pstmt.setInt(9, Volumen);
+			
+
+	try{
+		int resultado = pstmt.executeUpdate();
+
+		if(resultado != 1)
+			System.out.println("Error en la inserción " + resultado);
+		else
+			System.out.println("Donacion insertado con éxito!!!");
+
+		return 0;
+	}catch(SQLException sqle){
+
+		int pos = sqle.getMessage().indexOf(":");
+		String codeErrorSQL = sqle.getMessage().substring(0,pos);
+			System.out.println("Ha habido algún problema con  Oracle al hacer la insercion" + codeErrorSQL);
+			return 2;
+		}
+
 	}
 
 
+public ObservableList<Donacion> ObtenerDonaciones() throws SQLException{
+
+	ObservableList<Donacion> listadonaciones = FXCollections.observableArrayList();
+
+	//Preparo la conexión para ejecutar sentencias SQL de tipo update
+	Statement stm = conexion.createStatement();
+
+	// Preparo la sentencia SQL CrearTablaPersonas
+	String selectsql = "SELECT * FROM " + usr +".DONACION";
+
+	//ejecuto la sentencia
+	try{
+		ResultSet resultado = stm.executeQuery(selectsql);
+
+		int contador = 0;
+		while(resultado.next()){
+			contador++;
+
+			int N_Donacion = resultado.getInt(1);
+			String fecha = resultado.getString(2);
+			String TipoDonacion = resultado.getString(3);
+			String Pulso = resultado.getString(4);
+			String TA_Sist = resultado.getString(5);
+			String TA_Dias = resultado.getString(6);
+			String HB_Cap = resultado.getString(7);
+			String HB_Ven = resultado.getString(8);
+			int Volumen = resultado.getInt(9);
+			Donacion nueva = new Donacion(N_Donacion, fecha.substring(0,10), TipoDonacion, Pulso, TA_Sist, TA_Dias, HB_Cap, HB_Ven, Volumen);
+			listadonaciones.add(nueva);
+		}
+
+		if(contador==0)
+			System.out.println("no data found");
+
+	}catch(SQLException sqle){
+
+		int pos = sqle.getMessage().indexOf(":");
+		String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+		System.out.println(codeErrorSQL);
+	}
+
+	return listadonaciones;
+}
+public int EliminarDonacion(int Numdonacion) throws SQLException{
+
+	// Preparo la sentencia SQL y la conexión para ejecutar sentencias SQL de tipo update
+	String deletesql = "DELETE " + usr +".DONACION WHERE Num_Donacion= ?";
+	PreparedStatement pstmt = conexion.prepareStatement (deletesql);
+	pstmt.setInt(1, Numdonacion);
+
+	//ejecuto la sentencia
+	try{
+		int resultado = pstmt.executeUpdate();
+
+		if(resultado != 1)
+			System.out.println("Error en el borrado " + resultado);
+		else
+			System.out.println("Donante borrado con éxito!!!");
+
+		return 0;
+	}catch(SQLException sqle){
+
+		int pos = sqle.getMessage().indexOf(":");
+		String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+		System.out.println("Ha habido algún problema con  Oracle al hacer el borrado" + codeErrorSQL);
+		return 2;
+	}
+}
+public int InsertRealiza(int numdonacion, int numdonante) throws SQLException{
+
+	String updatesql = "INSERT INTO "+usr+".REALIZA VALUES (?, ?)";
+
+	PreparedStatement pstmt = conexion.prepareStatement (updatesql);
+	pstmt.setInt(1, numdonacion);
+	pstmt.setInt(2, numdonante);
+
+	//ejecuto la sentencia
+	try{
+		int resultado = pstmt.executeUpdate();
+
+		if(resultado != 1)
+			System.out.println("Error en la actualización " + resultado);
+		else
+			System.out.println("Insert de realiza realizado correctamente!!!");
+
+		return 0;
+	}catch(SQLException sqle){
+
+		int pos = sqle.getMessage().indexOf(":");
+		String codeErrorSQL = sqle.getMessage().substring(0,pos);
+
+			System.out.println(sqle.toString());
+			System.out.println("Ha habido algún problema con Oracle al hacer la insercion");
+			return 2;
+		
+
+	}
+	
+}
+
+}

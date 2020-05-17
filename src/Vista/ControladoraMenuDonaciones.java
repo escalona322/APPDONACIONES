@@ -35,7 +35,7 @@ public class ControladoraMenuDonaciones {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void AbrirBuscarDonaciones(){
 		try{
 			 
